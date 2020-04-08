@@ -367,3 +367,5 @@ MaxCore.max
 out
 java.hprof.txt
 .DS_Store
+
+Supprimerait gen_dockerfile/
