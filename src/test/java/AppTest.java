@@ -1,4 +1,3 @@
-import jdk.jfr.Category;
 import org.junit.Test;
 
 public class AppTest {
