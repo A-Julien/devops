@@ -1,0 +1,33 @@
+language: java
+sudo: required
+os: linux
+
+branches:
+  only:
+    - master
+
+jdk:
+  - oraclejdk8
+
+services:
+  - docker
+
+script:
+  - mvn build
+  - mvn test
+  - mvn site
+
+after_success:
+  - chmod +x push.sh
+  - chmod +x pushdoc.sh
+  - ./pushdoc.sh
+  - ./push.sh # merged on release branch
+  - bash <(curl -s https://codecov.io/bash)
+  - dockerbuild/update.sh
+
+
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
