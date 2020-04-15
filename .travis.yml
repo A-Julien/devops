@@ -20,17 +20,31 @@ script:
 
 after_success:
   - mvn site
-  - chmod +x pushdoc.sh
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
 
 before_deploy:
-  - ls -la
-  - ./pushdoc.sh
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
   - dockerbuild/update.sh
+  - ls dockerbuild
 
 deploy:
-  provider: script
-  script: bash docker_push.sh
-  on:
-    branch: master
+  - provider: pages
+    skip_cleanup: true
+    local_dir: target/site
+    github_token: $GH_TOKEN
+    keep_history: true
+    on:
+      branch: master
+
+  - provider: script
+    skip_cleanup: true
+    script: bash docker_push.sh
+    on:
+      branch: master
+
+  - provider: script
+    skip_cleanup: true
+    script: bash git_push.sh
+    on:
+      branch: master
+
