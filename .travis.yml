@@ -29,18 +29,14 @@ before_deploy:
 
 deploy:
   - provider: pages
-      skip_cleanup: true
-      local_dir: target/site
-      github_token: $GH_TOKEN
-      on:
-        branch: master
-
+    local_dir: target/site
+    github_token: $GH_TOKEN
+    on:
+      branch: master
   - provider: script
-      script: bash docker_push.sh
-      on:
-        branch: master
-
-
+    script: bash docker_push.sh
+    on:
+      branch: master
 
 
 
