@@ -14,7 +14,7 @@ services:
   - docker
 
 script:
-  - mvn build
+  - mvn compile
   - mvn test
   - mvn cobertura:cobertura
 
