@@ -14,19 +14,18 @@ services:
   - docker
 
 script:
-  - mvn site
   - mvn cobertura:cobertura
 
 after_success:
   - chmod +x push.sh
   - chmod +x pushdoc.sh
+  - mvn site
   - ./pushdoc.sh
-  - ./push.sh # merged on release branch
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
 
 
 before_deploy:
-  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - dockerbuild/update.sh
 
 deploy:
