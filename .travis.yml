@@ -25,6 +25,7 @@ after_success:
 before_deploy:
   - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
   - dockerbuild/update.sh
+  - ls dockerbuild
 
 deploy:
   - provider: pages

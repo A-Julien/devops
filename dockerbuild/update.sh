@@ -54,7 +54,6 @@ EOI
 } 
 
 # Build the Dockerfiles
-mkdir 
 for arch in ${arches}
 do
 	file=gen_dockerfile/${arch}/Dockerfile
