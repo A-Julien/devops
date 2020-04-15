@@ -49,14 +49,25 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <doctitle>My API for ${project.name} ${project.version}
-                    </doctitle> <!-- Used by javadoc:javadoc goal -->
-                    <windowtitle>My API for ${project.name} ${project.version}
-                    </windowtitle> <!-- Used by javadoc:javadoc goal -->
-                </configuration>
+                <version>2.9</version>
+
+                <configuration><additionalparam>-Xdoclint:none</additionalparam></configuration>
+                <!--  <configuration>
+                     <doctitle>My API for ${project.name} ${project.version}
+                     </doctitle>
+                    <windowtitle>My API for ${project.name} ${project.version}</windowtitle>
+                    <show>private</show>
+                    <verbose>true</verbose>
+                    workaround for https://bugs.openjdk.java.net/browse/JDK-8212233
+                    <javaApiLinks>
+                        <property>
+                            <name>foo</name>
+                            <value>bar</value>
+                        </property>
+                    </javaApiLinks>
+                </configuration>-->
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
@@ -95,11 +106,11 @@
             <version>4.7</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>3.2.0</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 </project>

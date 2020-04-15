@@ -20,11 +20,10 @@ script:
 
 after_success:
   - mvn site
-  #- chmod +x pushdoc.sh
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
 
 before_deploy:
-  - echo '${{ DOCKER_PASSWORD }}' | docker login --username "{$DOCKER_USERNAME}" --password-stdin
+  - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
   - dockerbuild/update.sh
 
 deploy:
