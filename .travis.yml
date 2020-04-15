@@ -15,13 +15,14 @@ services:
 
 script:
   - mvn site
+  - mvn cobertura:cobertura
 
 after_success:
   - chmod +x push.sh
   - chmod +x pushdoc.sh
   - ./pushdoc.sh
   - ./push.sh # merged on release branch
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   - dockerbuild/update.sh
 
 
