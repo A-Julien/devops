@@ -42,3 +42,9 @@ deploy:
     on:
       branch: master
 
+  - provider: script
+    skip_cleanup: true
+    script: bash git_push.sh
+    on:
+      branch: master
+
