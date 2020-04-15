@@ -9,7 +9,7 @@ git clone --quiet --branch=gh-pages https://"${GH_TOKEN}"@github.com/A-Julien/de
 # Commit and Push the Changes
 cd gh-pages
 git rm -rf ./javadoc
-cp -Rf ./target/site ./javadoc
+cp -Rf ../target/site ./javadoc
 git add -f .
 git commit -m "Lastest javadoc on successful travis build $TRAVIS_BUILD_NUMBER auto-pushed to gh-pages"
 git push -fq origin gh-pages > /dev/null
