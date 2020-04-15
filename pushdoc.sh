@@ -2,9 +2,7 @@
 
 # Get to the Travis build directory, configure git and clone the repo
 pwd
-cd $HOME
 ls -la
-pwd
 git config --global user.email "travis@travis-ci.org"
 git config --global user.name "travis-ci"
 #git clone --quiet --branch=gh-pages https://"${GH_TOKEN}"@github.com/A-Julien/devops gh-pages > /dev/null
