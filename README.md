@@ -15,4 +15,3 @@ Sauce blanche algérienne chef !
 *	Github : https://github.com/A-Julien/devops
 *	CI (Travis) : https://travis-ci.com/A-Julien/devops
 *	doc : https://a-julien.github.io/devops
-
