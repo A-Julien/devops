@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>devops</groupId>
+    <groupId>com</groupId>
     <artifactId>devops</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -46,28 +46,33 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9</version>
-
-                <configuration><additionalparam>-Xdoclint:none</additionalparam></configuration>
-                <!--  <configuration>
-                     <doctitle>My API for ${project.name} ${project.version}
-                     </doctitle>
-                    <windowtitle>My API for ${project.name} ${project.version}</windowtitle>
-                    <show>private</show>
-                    <verbose>true</verbose>
-                    workaround for https://bugs.openjdk.java.net/browse/JDK-8212233
-                    <javaApiLinks>
-                        <property>
-                            <name>foo</name>
-                            <value>bar</value>
-                        </property>
-                    </javaApiLinks>
-                </configuration>-->
-            </plugin>
-
+                <version>3.2.0</version>
+                <configuration>
+                      <doctitle>My API for ${project.name} ${project.version}</doctitle>
+                     <windowtitle>My API for ${project.name} ${project.version}</windowtitle>
+                     <show>private</show>
+                     <verbose>true</verbose>
+                     workaround for https://bugs.openjdk.java.net/browse/JDK-8212233
+                     <javaApiLinks>
+                         <property>
+                             <name>foo</name>
+                             <value>bar</value>
+                         </property>
+                     </javaApiLinks>
+                 </configuration>
+            </plugin>-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <configuration>
+                        <show>private</show>
+                        <nohelp>true</nohelp>
+                    </configuration>
+                </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
@@ -91,8 +96,40 @@
                     <check />
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>resource-bundles</id>
+                        <phase>package</phase>
+                        <goals>
+                            <!-- produce source artifact for main project sources -->
+                            <goal>resource-bundle</goal>
+
+                            <!-- produce source artifact for project test sources -->
+                            <goal>test-resource-bundle</goal>
+                        </goals>
+                        <configuration>
+                            <detectOfflineLinks>false</detectOfflineLinks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+   <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <show>public</show>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <dependencies>
         <dependency>
