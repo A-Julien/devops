@@ -23,8 +23,11 @@ after_success:
   - ./pushdoc.sh
   - ./push.sh # merged on release branch
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
-  - dockerbuild/update.sh
 
+
+before_deploy:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - dockerbuild/update.sh
 
 deploy:
   provider: script
