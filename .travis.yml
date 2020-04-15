@@ -24,7 +24,6 @@ after_success:
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
 
 before_deploy:
-  - ls -la
   - ./pushdoc.sh
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - dockerbuild/update.sh
