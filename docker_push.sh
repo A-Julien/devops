@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-#docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
 
 docker build -t travis-ci-build-devops  gen_dockerfile/files
 docker images
