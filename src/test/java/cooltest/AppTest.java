@@ -1,13 +1,13 @@
 package cooltest;
 
-import com.main;
+import com.Dframe;
 import org.junit.Test;
 
 
 public class AppTest {
     @Test
     public void testSlow() {
-        main main = new main();
+        Dframe dframe;
         System.out.println("slow");
     }
 }

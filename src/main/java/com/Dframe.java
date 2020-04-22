@@ -1,3 +1,5 @@
+package com;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,7 +13,7 @@ public class Dframe {
     String[] columns;
     public Object[][] data;
 
-    Dframe(Object[][] data){
+    public Dframe(Object[][] data){
         int m = data.length-1;
         int n = data[0].length;
         this.index = new String[n];
@@ -33,7 +35,7 @@ public class Dframe {
         }
     }
 
-    Dframe(String csvFile){
+    public Dframe(String csvFile){
 
         BufferedReader br = null;
         String line = "";

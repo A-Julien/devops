@@ -24,6 +24,8 @@ after_success:
   - dockerbuild/update.sh
   - PROJECT_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
   - ln target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar .
+  - ls
+  - pwd
 
 before_deploy:
   - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
