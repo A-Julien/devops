@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Dframe.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">devops</a> &gt; <a href="index.source.html" class="el_package">com</a> &gt; <span class="el_source">Dframe.java</span></div><h1>Dframe.java</h1><pre class="source lang-java linenums">package com;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Dframe {
+
+    String[] index;
+    String[] columns;
+    public Object[][] data;
+
+<span class="nc" id="L16">    public Dframe(Object[][] data){</span>
+<span class="nc" id="L17">        int m = data.length-1;</span>
+<span class="nc" id="L18">        int n = data[0].length;</span>
+<span class="nc" id="L19">        this.index = new String[n];</span>
+<span class="nc" id="L20">        this.columns = new String[m];</span>
+<span class="nc" id="L21">        this.data = new Object[n][m];</span>
+
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        for(int j = 0 ; j &lt; m ; j++) {</span>
+<span class="nc" id="L24">            columns[j] = (String) data[j+1][0];</span>
+        }
+
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        for(int i = 0 ; i &lt; n ; i++){</span>
+<span class="nc" id="L28">            index[i] = (String) data[0][i];</span>
+        }
+
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        for(int i = 0 ; i &lt; n; i++) {</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">            for(int j = 0 ; j &lt; m ; j++){</span>
+<span class="nc" id="L33">                this.data[i][j] = data[i+1][j+1];</span>
+            }
+        }
+<span class="nc" id="L36">    }</span>
+
+<span class="nc" id="L38">    public Dframe(String csvFile){</span>
+
+<span class="nc" id="L40">        BufferedReader br = null;</span>
+<span class="nc" id="L41">        String line = &quot;&quot;;</span>
+<span class="nc" id="L42">        String cvsSplitBy = &quot;,&quot;;</span>
+<span class="nc" id="L43">        List&lt;List&lt;String&gt;&gt; tmp_list = new ArrayList&lt;&gt;();</span>
+
+        try {
+
+<span class="nc" id="L47">            br = new BufferedReader(new FileReader(csvFile));</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            while ((line = br.readLine()) != null) {</span>
+<span class="nc" id="L49">                String[] tmp = line.split(cvsSplitBy); // use comma as separator</span>
+<span class="nc" id="L50">                tmp_list.add(Arrays.asList(tmp));</span>
+<span class="nc" id="L51">            }</span>
+
+<span class="nc" id="L53">            this.index = new String[tmp_list.get(0).size()];</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            for(int i = 0 ; i &lt; tmp_list.get(0).size() ; i++)</span>
+<span class="nc" id="L55">                this.index[i] = tmp_list.get(0).get(i);</span>
+
+<span class="nc" id="L57">            this.columns = new String[tmp_list.size()-1];</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            for(int j = 0 ; j &lt; tmp_list.size()-1 ; j++)</span>
+<span class="nc" id="L59">                this.columns[j] = tmp_list.get(j+1).get(0);</span>
+
+<span class="nc" id="L61">            this.data = new Object[index.length][columns.length];</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            for(int i = 0 ; i &lt; index.length ; i++){</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">                for(int j = 0 ; j &lt; columns.length ; j++){</span>
+<span class="nc" id="L64">                    this.data[i][j] = tmp_list.get(i+1).get(j+1);</span>
+                }
+
+            }
+
+<span class="nc" id="L69">        } catch (IOException e) {</span>
+<span class="nc" id="L70">            e.printStackTrace();</span>
+        } finally {
+<span class="nc bnc" id="L72" title="All 6 branches missed.">            if (br != null) {</span>
+                try {
+<span class="nc" id="L74">                    br.close();</span>
+<span class="nc" id="L75">                } catch (IOException e) {</span>
+<span class="nc" id="L76">                    e.printStackTrace();</span>
+<span class="nc" id="L77">                }</span>
+            }
+        }
+
+<span class="nc" id="L81">    }</span>
+
+    public String[] getIndex(){
+<span class="nc" id="L84">        return this.index;</span>
+    }
+
+    public String[] getColumns(){
+<span class="nc" id="L88">        return this.columns;</span>
+    }
+
+    public void print(){
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        for(String col : this.columns)</span>
+<span class="nc" id="L93">            System.out.print(&quot;       &quot; + col);</span>
+<span class="nc" id="L94">        System.out.println();</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        for(int i = 0 ; i &lt; this.index.length ;  i++){</span>
+<span class="nc" id="L96">            System.out.print(index[i] + &quot;     &quot;);</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            for(int j = 0 ; j &lt; this.columns.length ;  j++)</span>
+<span class="nc" id="L98">                System.out.print(data[j][i] + &quot;     &quot;);</span>
+<span class="nc" id="L99">            System.out.println();</span>
+        }
+<span class="nc" id="L101">    }</span>
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
