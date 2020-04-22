@@ -30,7 +30,7 @@ before_deploy:
         export BEFORE_DEPLOY_RUN=1;
         echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin;
         ls dockerbuild;
-        ln target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar gen_dockerfile/files/;
+        cp target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar gen_dockerfile/files/;
       fi
 
 deploy:
