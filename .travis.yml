@@ -23,9 +23,7 @@ after_success:
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   - dockerbuild/update.sh
   - PROJECT_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
-  - ln target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar .
-  - ls
-  - pwd
+  - ln target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar gen_dockerfile/files/
 
 before_deploy:
   - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
