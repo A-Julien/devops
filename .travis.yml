@@ -25,10 +25,13 @@ after_success:
   - PROJECT_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
 
 before_deploy:
-  - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
-  - ls dockerbuild
-  - ln target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar gen_dockerfile/files/
-
+  - >
+      if ! [ "$BEFORE_DEPLOY_RUN" ]; then
+        export BEFORE_DEPLOY_RUN=1;
+        echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin;
+        ls dockerbuild;
+        ln target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar gen_dockerfile/files/;
+      fi
 
 deploy:
   - provider: pages
