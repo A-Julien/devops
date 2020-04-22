@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.015873015873015872" branch-rate="0.0" lines-covered="1" lines-valid="63" branches-covered="0" branches-valid="26" complexity="3.142857142857143" version="2.1.1" timestamp="1587569376770">
+<coverage line-rate="0.015873015873015872" branch-rate="0.0" lines-covered="1" lines-valid="63" branches-covered="0" branches-valid="26" complexity="3.142857142857143" version="2.1.1" timestamp="1587569792765">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/A-Julien/devops/target/generated-sources/annotations</source>
