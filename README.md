@@ -1,4 +1,4 @@
-## **/!\ Do not PUSH on RELEASE-branch. ONLY the CI is allowed to push on RELEASE-branch. !!!!**
+## **/!\ Do not PUSH on Production-branch. ONLY the CI is allowed to push on RELEASE-branch. !!!!**
 
 # DevOps 
 
@@ -6,9 +6,8 @@
 
 [![codecov](https://codecov.io/gh/A-Julien/devops/branch/release/graph/badge.svg)](https://codecov.io/gh/A-Julien/devops)
 
-![codeinsp](https://www.code-inspector.com/project/5990/score/svg)
+[![codeinsp](https://www.code-inspector.com/project/5990/score/svg)](https://frontend.code-inspector.com/public/project/5990/devops/dashboard)
 
-Sauce blanche algérienne chef !
 
 ## Project architecture:
 
