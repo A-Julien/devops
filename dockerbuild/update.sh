@@ -69,7 +69,7 @@ print_command() {
 	cat >> $1 <<-'EOI'
 	# Execute command
 
-	COPY ${HOME}/devops-${PROJECT_VERSION}-jar-with-dependencies.jar /app/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
+	COPY ./devops-${PROJECT_VERSION}-jar-with-dependencies.jar /app/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
 	CMD java -jar /app/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
 EOI
 }
