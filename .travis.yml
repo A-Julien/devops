@@ -32,13 +32,11 @@ after_success:
 before_deploy:
   - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin;
 
-
 deploy:
   - provider: releases
     skip_cleanup: true
     keep_history: true
-    user: $GITHUB_USER
-    password: $GITHUB_PWD
+    github_token: $GITHUB_OAUTH_TOKEN
     file: ${HOME}/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
     on:
       branch: master
