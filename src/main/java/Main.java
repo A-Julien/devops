@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -8,11 +9,28 @@ public class Main {
                             {"Domicile", "Coin Paumé", "Grenoble", "Grenoble"},
                             {"Formation", "M1 INFO", "M1 INFO", "M1 INFO"}
                           };
-
         Dframe dataframe = new Dframe(data);
-        dataframe.print();
+        System.out.println("On affiche le dataframe obtenu via un tableau : ");
+        dataframe.to_string();
 
         Dframe dataframe2 = new Dframe("/home/hugo/Documents/IMAG/M1/DevOps/project/src/main/java/data.csv");
-        dataframe2.print();
+        System.out.println("On affiche le dataframe obtenu via un fichier csv : ");
+        dataframe2.to_string();
+
+        System.out.println("On affiche les 2 premiers index du dataframe : ");
+        dataframe.head(2);
+
+        System.out.println("On affiche les 2 derniers index du dataframe : ");
+        dataframe.tail(2);
+
+
+        Dframe dataframe3 = dataframe.iloc(0);
+        System.out.println("On affiche le dataframe obtenu via sélection de l'index 0 : ");
+        dataframe3.to_string();
+
+        Dframe dataframe4 = dataframe.loc("Domicile");
+        System.out.println("On affiche le dataframe obtenu via sélection du label \"Domicile\" : ");
+        dataframe4.to_string();
+
     }
 }
