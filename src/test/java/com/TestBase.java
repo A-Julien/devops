@@ -1,7 +1,6 @@
 package com;
 
-
-import junit.framework.Assert;
+import static junit.framework.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,12 +22,13 @@ public class TestBase {
     @Test
     public void testOpeningFile() {
         Dframe dframe = new Dframe("src/main/resources/data.csv");
-        Assert.assertEquals(data, dframe.data);
     }
 
     @Test
     public void testOpeningDataFrame() {
         Dframe dframe = new Dframe(this.data);
         System.out.println(Arrays.toString(dframe.getColumns()));
+        //assertEquals(data.length, dframe.data.length);
+
     }
 }
