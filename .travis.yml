@@ -47,11 +47,13 @@ deploy:
   - provider: script
     skip_cleanup: true
     script: bash docker_push.sh
+    keep_history: true
     on:
       branch: master
 
   - provider: script
     skip_cleanup: true
+    keep_history: true
     script: bash git_push.sh
     on:
       branch: master
