@@ -23,11 +23,12 @@ after_success:
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   - dockerbuild/update.sh
   - PROJECT_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+  - cp gen_dockerfile/files/Dockefile ${HOME}/;
+  - cp target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar ${HOME}/;
 
 before_deploy:
   - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin;
-  - cp gen_dockerfile/files/Dockefile ${HOME}/;
-  - cp target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar ${HOME}/;
+
  # - >
  #     if ! [ "$BEFORE_DEPLOY_RUN" ]; then
  #       export BEFORE_DEPLOY_RUN=1;
