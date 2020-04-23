@@ -6,12 +6,22 @@ dist: trusty
 branches:
   only:
     - master
+env:
+  - tf_version=0.12.19 tf_init_cli_options="-input=false" tf_validation_cli_options="" tf_plan_cli_options="-lock=false -input=false" tf_apply_cli_options="-auto-approve -input=false"
+  - PROJECT_VERSION="default"
+
 
 jdk:
   - oraclejdk8
 
 services:
   - docker
+
+before_install:
+  - wget https://releases.hashicorp.com/terraform/"$tf_version"/terraform_"$tf_version"_linux_amd64.zip
+  - unzip terraform_"$tf_version"_linux_amd64.zip
+  - sudo mv terraform /usr/local/bin/
+  - rm terraform_"$tf_version"_linux_amd64.zip
 
 script:
   - mvn compile
@@ -29,14 +39,6 @@ after_success:
 before_deploy:
   - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin;
 
- # - >
- #     if ! [ "$BEFORE_DEPLOY_RUN" ]; then
- #       export BEFORE_DEPLOY_RUN=1;
- #       echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin;
- #       ls dockerbuild;
- #       cp gen_dockerfile/files/Dockefile ${HOME}/;
- #       cp target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar ${HOME}/;
- #   fi
 
 deploy:
   - provider: pages
@@ -60,4 +62,12 @@ deploy:
     script: bash git_push.sh
     on:
       branch: master
+
+  - provider: releases
+    api_key:
+      secure: $GH_TOKEN
+    file: ${HOME}/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
+    skip_cleanup: true
+    on:
+      tags: true
 
