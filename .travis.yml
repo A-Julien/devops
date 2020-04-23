@@ -9,21 +9,12 @@ branches:
 env:
   global:
     - PROJECT_VERSION="default"
-#  - tf_version=0.12.19 tf_init_cli_options="-input=false" tf_validation_cli_options="" tf_plan_cli_options="-lock=false -input=false" tf_apply_cli_options="-auto-approve -input=false"
-
-
 
 jdk:
   - oraclejdk8
 
 services:
   - docker
-
-#before_install:
-#  - wget https://releases.hashicorp.com/terraform/"$tf_version"/terraform_"$tf_version"_linux_amd64.zip
-#  - unzip terraform_"$tf_version"_linux_amd64.zip
-#  - sudo mv terraform /usr/local/bin/
-#  - rm terraform_"$tf_version"_linux_amd64.zip
 
 script:
   - mvn compile
@@ -46,8 +37,8 @@ deploy:
   - provider: releases
     skip_cleanup: true
     keep_history: true
-    api_key:
-      secure: $GH_TOKEN
+    user: $GITHUB_USER
+    password: $GITHUB_PWD
     file: ${HOME}/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
     on:
       branch: master
@@ -73,5 +64,3 @@ deploy:
     script: bash git_push.sh
     on:
       branch: master
-
-
