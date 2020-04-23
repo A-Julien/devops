@@ -46,24 +46,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                      <doctitle>My API for ${project.name} ${project.version}</doctitle>
-                     <windowtitle>My API for ${project.name} ${project.version}</windowtitle>
-                     <show>private</show>
-                     <verbose>true</verbose>
-                     workaround for https://bugs.openjdk.java.net/browse/JDK-8212233
-                     <javaApiLinks>
-                         <property>
-                             <name>foo</name>
-                             <value>bar</value>
-                         </property>
-                     </javaApiLinks>
-                 </configuration>
-            </plugin>-->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
@@ -104,6 +86,7 @@
                         <id>resource-bundles</id>
                         <phase>package</phase>
                         <goals>
+
                             <!-- produce source artifact for main project sources -->
                             <goal>resource-bundle</goal>
 
@@ -116,8 +99,32 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
    <reporting>
         <plugins>
             <plugin>
@@ -143,11 +150,5 @@
             <version>4.7</version>
             <scope>test</scope>
         </dependency>
-        <!--<dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.2.0</version>
-        </dependency>-->
     </dependencies>
-
 </project>
