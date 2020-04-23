@@ -13,55 +13,55 @@ public class Dframe {
     String[] columns;
     public Object[][] data;
 
-<span class="nc" id="L16">    public Dframe(Object[][] data){</span>
-<span class="nc" id="L17">        int m = data.length-1;</span>
-<span class="nc" id="L18">        int n = data[0].length;</span>
-<span class="nc" id="L19">        this.index = new String[n];</span>
-<span class="nc" id="L20">        this.columns = new String[m];</span>
-<span class="nc" id="L21">        this.data = new Object[n][m];</span>
+<span class="fc" id="L16">    public Dframe(Object[][] data){</span>
+<span class="fc" id="L17">        int m = data.length-1;</span>
+<span class="fc" id="L18">        int n = data[0].length;</span>
+<span class="fc" id="L19">        this.index = new String[n];</span>
+<span class="fc" id="L20">        this.columns = new String[m];</span>
+<span class="fc" id="L21">        this.data = new Object[n][m];</span>
 
-<span class="nc bnc" id="L23" title="All 2 branches missed.">        for(int j = 0 ; j &lt; m ; j++) {</span>
-<span class="nc" id="L24">            columns[j] = (String) data[j+1][0];</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        for(int j = 0 ; j &lt; m ; j++) {</span>
+<span class="fc" id="L24">            columns[j] = (String) data[j+1][0];</span>
         }
 
-<span class="nc bnc" id="L27" title="All 2 branches missed.">        for(int i = 0 ; i &lt; n ; i++){</span>
-<span class="nc" id="L28">            index[i] = (String) data[0][i];</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        for(int i = 0 ; i &lt; n ; i++){</span>
+<span class="fc" id="L28">            index[i] = (String) data[0][i];</span>
         }
 
-<span class="nc bnc" id="L31" title="All 2 branches missed.">        for(int i = 0 ; i &lt; n; i++) {</span>
-<span class="nc bnc" id="L32" title="All 2 branches missed.">            for(int j = 0 ; j &lt; m ; j++){</span>
-<span class="nc" id="L33">                this.data[i][j] = data[i+1][j+1];</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        for(int i = 0 ; i &lt; n; i++) {</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">            for(int j = 0 ; j &lt; m ; j++){</span>
+<span class="fc" id="L33">                this.data[i][j] = data[i+1][j+1];</span>
             }
         }
-<span class="nc" id="L36">    }</span>
+<span class="fc" id="L36">    }</span>
 
-<span class="nc" id="L38">    public Dframe(String csvFile){</span>
+<span class="fc" id="L38">    public Dframe(String csvFile){</span>
 
-<span class="nc" id="L40">        BufferedReader br = null;</span>
-<span class="nc" id="L41">        String line = &quot;&quot;;</span>
-<span class="nc" id="L42">        String cvsSplitBy = &quot;,&quot;;</span>
-<span class="nc" id="L43">        List&lt;List&lt;String&gt;&gt; tmp_list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L40">        BufferedReader br = null;</span>
+<span class="fc" id="L41">        String line = &quot;&quot;;</span>
+<span class="fc" id="L42">        String cvsSplitBy = &quot;,&quot;;</span>
+<span class="fc" id="L43">        List&lt;List&lt;String&gt;&gt; tmp_list = new ArrayList&lt;&gt;();</span>
 
         try {
 
-<span class="nc" id="L47">            br = new BufferedReader(new FileReader(csvFile));</span>
-<span class="nc bnc" id="L48" title="All 2 branches missed.">            while ((line = br.readLine()) != null) {</span>
-<span class="nc" id="L49">                String[] tmp = line.split(cvsSplitBy); // use comma as separator</span>
-<span class="nc" id="L50">                tmp_list.add(Arrays.asList(tmp));</span>
-<span class="nc" id="L51">            }</span>
+<span class="fc" id="L47">            br = new BufferedReader(new FileReader(csvFile));</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            while ((line = br.readLine()) != null) {</span>
+<span class="fc" id="L49">                String[] tmp = line.split(cvsSplitBy); // use comma as separator</span>
+<span class="fc" id="L50">                tmp_list.add(Arrays.asList(tmp));</span>
+<span class="fc" id="L51">            }</span>
 
-<span class="nc" id="L53">            this.index = new String[tmp_list.get(0).size()];</span>
-<span class="nc bnc" id="L54" title="All 2 branches missed.">            for(int i = 0 ; i &lt; tmp_list.get(0).size() ; i++)</span>
-<span class="nc" id="L55">                this.index[i] = tmp_list.get(0).get(i);</span>
+<span class="fc" id="L53">            this.index = new String[tmp_list.get(0).size()];</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            for(int i = 0 ; i &lt; tmp_list.get(0).size() ; i++)</span>
+<span class="fc" id="L55">                this.index[i] = tmp_list.get(0).get(i);</span>
 
-<span class="nc" id="L57">            this.columns = new String[tmp_list.size()-1];</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">            for(int j = 0 ; j &lt; tmp_list.size()-1 ; j++)</span>
-<span class="nc" id="L59">                this.columns[j] = tmp_list.get(j+1).get(0);</span>
+<span class="fc" id="L57">            this.columns = new String[tmp_list.size()-1];</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">            for(int j = 0 ; j &lt; tmp_list.size()-1 ; j++)</span>
+<span class="fc" id="L59">                this.columns[j] = tmp_list.get(j+1).get(0);</span>
 
-<span class="nc" id="L61">            this.data = new Object[index.length][columns.length];</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">            for(int i = 0 ; i &lt; index.length ; i++){</span>
-<span class="nc bnc" id="L63" title="All 2 branches missed.">                for(int j = 0 ; j &lt; columns.length ; j++){</span>
-<span class="nc" id="L64">                    this.data[i][j] = tmp_list.get(i+1).get(j+1);</span>
+<span class="fc" id="L61">            this.data = new Object[index.length][columns.length];</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">            for(int i = 0 ; i &lt; index.length ; i++){</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">                for(int j = 0 ; j &lt; columns.length ; j++){</span>
+<span class="fc" id="L64">                    this.data[i][j] = tmp_list.get(i+1).get(j+1);</span>
                 }
 
             }
@@ -69,23 +69,23 @@ public class Dframe {
 <span class="nc" id="L69">        } catch (IOException e) {</span>
 <span class="nc" id="L70">            e.printStackTrace();</span>
         } finally {
-<span class="nc bnc" id="L72" title="All 6 branches missed.">            if (br != null) {</span>
+<span class="pc bpc" id="L72" title="5 of 6 branches missed.">            if (br != null) {</span>
                 try {
-<span class="nc" id="L74">                    br.close();</span>
+<span class="pc" id="L74">                    br.close();</span>
 <span class="nc" id="L75">                } catch (IOException e) {</span>
 <span class="nc" id="L76">                    e.printStackTrace();</span>
-<span class="nc" id="L77">                }</span>
+<span class="pc" id="L77">                }</span>
             }
         }
 
-<span class="nc" id="L81">    }</span>
+<span class="fc" id="L81">    }</span>
 
     public String[] getIndex(){
 <span class="nc" id="L84">        return this.index;</span>
     }
 
     public String[] getColumns(){
-<span class="nc" id="L88">        return this.columns;</span>
+<span class="fc" id="L88">        return this.columns;</span>
     }
 
     public void print(){
