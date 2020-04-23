@@ -31,8 +31,9 @@ before_deploy:
         echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin;
         ls dockerbuild;
         touch tmp
-        cp target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar gen_dockerfile/files/;
-      fi
+        cp gen_dockerfile/files/Dockefile ${HOME}/;
+        cp target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar ${HOME}/;
+    fi
 
 deploy:
   - provider: pages

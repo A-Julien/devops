@@ -32,7 +32,9 @@ print_basepackages() {
 	ARG BUILD_DATE
 	ARG VCS_REF
 	ARG PROJECT_VERSION=default_value
+	ARG HOME=default_value
 	ENV PROJECT_VERSION=$PROJECT_VERSION
+	ENV HOME=$HOME
 
 	LABEL org.label-schema.build-date=$BUILD_DATE \
     	org.label-schema.docker.dockerfile="/Dockerfile" \
@@ -67,7 +69,7 @@ print_command() {
 	cat >> $1 <<-'EOI'
 	# Execute command
 
-	COPY ./devops-${PROJECT_VERSION}-jar-with-dependencies.jar /app/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
+	COPY ${HOME}/devops-${PROJECT_VERSION}-jar-with-dependencies.jar /app/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
 	CMD java -jar /app/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
 EOI
 }
