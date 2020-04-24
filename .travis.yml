@@ -6,7 +6,7 @@ dist: trusty
 branches:
   only:
     - master
-    - /^v\d+\.\d+\.\d+.*$/
+    - '/^\d+\.\d+\.\d+$/'  # build tag commits (matches 'x.y.z' tags only)
 env:
   global:
     - PROJECT_VERSION="default"
