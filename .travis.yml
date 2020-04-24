@@ -6,7 +6,7 @@ dist: trusty
 branches:
   only:
     - master
-    - /^v.*$/
+    - /^v\d+\.\d+\.\d+.*$/
 env:
   global:
     - PROJECT_VERSION="default"
