@@ -3,9 +3,9 @@ sudo: required
 os: linux
 dist: trusty
 
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
 env:
   global:
     - PROJECT_VERSION="default"
