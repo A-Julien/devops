@@ -1,5 +1,3 @@
-## **/!\ Do not PUSH on Production-branch. ONLY the CI is allowed to push on RELEASE-branch. !!!!**
-
 # DevOps 
 
 [![Build Status](https://travis-ci.com/A-Julien/devops.svg?branch=master)](https://travis-ci.com/A-Julien/tacOS) 
