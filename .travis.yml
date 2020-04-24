@@ -9,7 +9,7 @@ branches:
 env:
   global:
     - PROJECT_VERSION="default"
-    - secure: jrUx8qTuAajdkbVda6288nfBgRQ21qfye3UrAqoRWxASzzH8NEaw6jAz/1ysxE0B+XBmlASq1IyvKlyFLBqGLWt//IMK+jTKY2gAfZuw//0KWWJI8RXwSqvcHx0D+RWtA1u6t71uIrSgerBclEgB0Nhtygffu9JRPxfh9Tr7JX3ojrN8eLj+6nX1/FlMvWpPEeCIDexP4mKgTBFtIGZEJAfJ86l7vN/onGDBmWnKSdrNy/SEV2vrD+NpKj3HbDhcm9AXb0obHyOdbreTRt4SaNzGg5494n6IziSx39yw/OSgsMd1SvNHLtOJ3lyib5dJFInkSTL0FUx4EnbhsB7jqs5b2437bJEEO5/ZeDlsABpclRKiJk5owTuPSfZH8DS04zfp2chC70igCU44BTL8DmZdu0fvbW0kyYY/LFO2+LoxYXgPOz7YSjuZJLO9PUzC5+7NgadjLiziNDss6uUz8yqUAjR1ReQPHP2h6N8sFc3ecGkXpUVJyrU6EgeJtnspi3905G3/rW1pkLE8ahn9D5hjOMlRU4YblrbwEo3uTUGK+vq13wi30efLCl6msZFkOs7J/E/NQLcRf30h3kMs+03XMmXHCxiv+J6qmCLwZdhnbA/In7hSbe96l0TohNBkqn0gxfwx2LBPaPtWfVav9DwENjcmE5IlgWsgCIm6GEI=
+
 jdk:
   - oraclejdk8
 services:
@@ -34,7 +34,8 @@ deploy:
     skip_cleanup: true
     keep_history: true
     overwrite: true
-    api_key: "$GITHUB_OAUTH_TOKEN"
+    api_key:
+      - secure: jrUx8qTuAajdkbVda6288nfBgRQ21qfye3UrAqoRWxASzzH8NEaw6jAz/1ysxE0B+XBmlASq1IyvKlyFLBqGLWt//IMK+jTKY2gAfZuw//0KWWJI8RXwSqvcHx0D+RWtA1u6t71uIrSgerBclEgB0Nhtygffu9JRPxfh9Tr7JX3ojrN8eLj+6nX1/FlMvWpPEeCIDexP4mKgTBFtIGZEJAfJ86l7vN/onGDBmWnKSdrNy/SEV2vrD+NpKj3HbDhcm9AXb0obHyOdbreTRt4SaNzGg5494n6IziSx39yw/OSgsMd1SvNHLtOJ3lyib5dJFInkSTL0FUx4EnbhsB7jqs5b2437bJEEO5/ZeDlsABpclRKiJk5owTuPSfZH8DS04zfp2chC70igCU44BTL8DmZdu0fvbW0kyYY/LFO2+LoxYXgPOz7YSjuZJLO9PUzC5+7NgadjLiziNDss6uUz8yqUAjR1ReQPHP2h6N8sFc3ecGkXpUVJyrU6EgeJtnspi3905G3/rW1pkLE8ahn9D5hjOMlRU4YblrbwEo3uTUGK+vq13wi30efLCl6msZFkOs7J/E/NQLcRf30h3kMs+03XMmXHCxiv+J6qmCLwZdhnbA/In7hSbe96l0TohNBkqn0gxfwx2LBPaPtWfVav9DwENjcmE5IlgWsgCIm6GEI=
     file: "${HOME}/devops-${PROJECT_VERSION}-jar-with-dependencies.jar"
     on:
       tags: true
