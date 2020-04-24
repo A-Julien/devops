@@ -11,4 +11,5 @@
 
 *	Github : https://github.com/A-Julien/devops
 *	CI (Travis) : https://travis-ci.com/A-Julien/devops
-*	doc : https://a-julien.github.io/devops
+*	MavenDoc : [mavendoc](https://a-julien.github.io/devops)
+*   JavaDoc : [javadoc](https://a-julien.github.io/devops/apidocs/index.html)
