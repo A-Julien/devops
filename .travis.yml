@@ -38,8 +38,7 @@ deploy:
     skip_cleanup: true
     keep_history: true
     overwrite: true
-    api_key:
-      secure: $GITHUB_OAUTH_TOKEN
+    api_key: $GITHUB_OAUTH_TOKEN
     file: ${HOME}/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
     on:
       tags: true
