@@ -36,10 +36,10 @@ deploy:
   - provider: releases
     skip_cleanup: true
     keep_history: true
-    github_token: $GITHUB_OAUTH_TOKEN
+    api_key: $GITHUB_OAUTH_TOKEN
     file: ${HOME}/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
     on:
-      branch: master
+      tags: true
 
   - provider: pages
     skip_cleanup: true
