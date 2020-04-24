@@ -3,9 +3,10 @@ sudo: required
 os: linux
 dist: trusty
 
-#branches:
-#  only:
-#    - master
+branches:
+  only:
+    - master
+    - /^v.*$/
 env:
   global:
     - PROJECT_VERSION="default"
@@ -50,6 +51,7 @@ deploy:
     github_token: $GH_TOKEN
     keep_history: true
     on:
+      tags: false
       branch: master
 
   - provider: script
@@ -57,6 +59,7 @@ deploy:
     script: bash docker_push.sh
     keep_history: true
     on:
+      tags: false
       branch: master
 
   - provider: script
@@ -64,4 +67,5 @@ deploy:
     keep_history: true
     script: bash git_push.sh
     on:
+      tags: false
       branch: master
