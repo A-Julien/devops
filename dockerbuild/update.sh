@@ -70,6 +70,7 @@ print_command() {
 	# Execute command
 
 	COPY ./devops-${PROJECT_VERSION}-jar-with-dependencies.jar /app/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
+	COPY ./data.csv /app/data.csv
 	CMD java -jar /app/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
 EOI
 }

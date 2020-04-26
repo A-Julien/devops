@@ -26,8 +26,10 @@ after_success:
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   - dockerbuild/update.sh
   - PROJECT_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
-  - cp gen_dockerfile/files/Dockerfile ${HOME}/;
-  - cp target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar ${HOME}/;
+  - cp gen_dockerfile/files/Dockerfile ${HOME}/
+  - cp target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar ${HOME}/
+  - cp src/main/resources/data.csv ${HOME}/
+  - java -jar ${HOME}/devops-${PROJECT_VERSION}-jar-with-dependencies.jar
 
 before_deploy:
   - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin;
@@ -55,8 +57,8 @@ deploy:
 
   - provider: script
     skip_cleanup: true
-    script: bash docker_push.sh
     keep_history: true
+    script: bash docker_push.sh
     on:
       tags: false
       branch: master
