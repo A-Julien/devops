@@ -120,7 +120,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.main</mainClass>
+                            <mainClass>com.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
