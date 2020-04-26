@@ -1,10 +1,10 @@
 package com;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Object[][] data = { {"Julien", "Hugo", "Laura"},
                             {"Age", "24", "23", "23"},
                             {"Domicile", "Coin Paumé", "Grenoble", "Grenoble"},

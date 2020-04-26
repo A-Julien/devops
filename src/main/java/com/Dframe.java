@@ -1,5 +1,7 @@
 package com;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -41,7 +43,7 @@ public class Dframe {
         }
     }
 
-    Dframe(String csvFile){
+    Dframe(String csvFile) throws IOException {
 
         BufferedReader br = null;
         String line = "";
@@ -71,19 +73,17 @@ public class Dframe {
                 }
 
             }
-
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException("can not open");
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    throw new IOException("can not open");
                 }
             }
         }
-
     }
 
     public String[] getIndex(){

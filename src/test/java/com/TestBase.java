@@ -5,6 +5,7 @@ import static junit.framework.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class TestBase {
@@ -21,8 +22,13 @@ public class TestBase {
     }
 
     @Test
-    public void testOpeningFile() {
+    public void testOpeningFile() throws IOException {
         Dframe dframe = new Dframe("src/main/resources/data.csv");
+    }
+
+    @Test(expected = IOException.class)
+    public void testDframeExcéption() throws IOException {
+        Dframe dframe = new Dframe("src//data.csv");
     }
 
     @Test
@@ -69,5 +75,17 @@ public class TestBase {
         assertEquals(Integer.parseInt((String) dframe1.data[0][0]), 24);
         assertEquals(Integer.parseInt((String) dframe1.data[1][0]), 23);
         assertEquals(Integer.parseInt((String) dframe1.data[2][0]), 23);
+    }
+
+    @Test
+    public void testLoc2(){
+        Dframe dframe = new Dframe(this.data);
+        assertNull(dframe.loc("Doc"));
+    }
+
+    @Test
+    public void testToString(){
+        Dframe dframe = new Dframe(this.data);
+        dframe.to_string();
     }
 }
