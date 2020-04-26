@@ -14,7 +14,7 @@ public class Main {
         System.out.println("On affiche le dataframe obtenu via un tableau : ");
         dataframe.to_string();
 
-        Dframe dataframe2 = new Dframe("src/main/resources/data.csv");
+        Dframe dataframe2 = new Dframe("data.csv");
         System.out.println("On affiche le dataframe obtenu via un fichier csv : ");
         dataframe2.to_string();
 
