@@ -1,7 +1,5 @@
 package com;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -96,6 +94,11 @@ public class Dframe {
         }
     }
 
+    /**
+     * Return a specifique columns of the data frame
+     *
+     * @return
+     */
     public String[] getIndex(){
         return this.index;
     }
@@ -103,7 +106,7 @@ public class Dframe {
     /**
      * Return a specifique columns of the data frame
      *
-     * @return colomne
+     * @return column
      */
     public String[] getColumns(){
         return this.columns;

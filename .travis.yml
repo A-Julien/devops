@@ -12,12 +12,15 @@ env:
 
 jdk:
   - oraclejdk8
+  -
 services:
   - docker
+  -
 script:
   - mvn compile
   - mvn test
   - mvn cobertura:cobertura
+  -
 after_success:
   - mvn site
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
@@ -26,6 +29,7 @@ after_success:
     --non-recursive exec:exec)
   - cp gen_dockerfile/files/Dockerfile ${HOME}/;
   - cp target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar ${HOME}/;
+  -
 before_deploy:
   - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin;
 
@@ -40,6 +44,7 @@ deploy:
     on:
       tags: true
       repo: A-Julien/devops
+
   - provider: pages
     skip_cleanup: true
     local_dir: target/site
@@ -48,6 +53,7 @@ deploy:
     on:
       tags: false
       branch: master
+
   - provider: script
     skip_cleanup: true
     script: bash docker_push.sh
@@ -55,6 +61,7 @@ deploy:
     on:
       tags: false
       branch: master
+
   - provider: script
     skip_cleanup: true
     keep_history: true
