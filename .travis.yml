@@ -12,24 +12,23 @@ env:
 
 jdk:
   - oraclejdk8
-  -
+
 services:
   - docker
-  -
+
 script:
   - mvn compile
   - mvn test
   - mvn cobertura:cobertura
-
+  - mvn package
 after_success:
   - mvn site
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   - dockerbuild/update.sh
-  - PROJECT_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}'
-    --non-recursive exec:exec)
+  - PROJECT_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
   - cp gen_dockerfile/files/Dockerfile ${HOME}/;
   - cp target/devops-${PROJECT_VERSION}-jar-with-dependencies.jar ${HOME}/;
-  -
+
 before_deploy:
   - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin;
 
