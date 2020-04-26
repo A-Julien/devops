@@ -21,6 +21,11 @@ public class Dframe {
         this.data = new Object[nb_index][nb_columns];
     }
 
+    /**
+     * Construct data frame
+     *
+     * @param data
+     */
     Dframe(Object[][] data){
         int m = data.length-1;
         int n = data[0].length;
@@ -43,6 +48,11 @@ public class Dframe {
         }
     }
 
+    /**
+     * Construct data frame from csv file
+     * @param csvFile the csv file
+     * @throws IOException if file not found
+     */
     Dframe(String csvFile) throws IOException {
 
         BufferedReader br = null;
@@ -90,10 +100,22 @@ public class Dframe {
         return this.index;
     }
 
+    /**
+     * Return a specifique columns of the data frame
+     *
+     * @return colomne
+     */
     public String[] getColumns(){
         return this.columns;
     }
 
+    /**
+     * This function returns the first n rows for the object based on position.
+     * It is useful for quickly testing if your object has the right type of data in it.
+     *
+     * @param n Number of rows to select.
+     * @return The first n rows of the caller object.
+     */
     public String head(int n){
         StringBuilder stringBuilder = new StringBuilder();
         for(String col : this.columns) stringBuilder.append("       ").append(col);
@@ -109,6 +131,13 @@ public class Dframe {
         return stringBuilder.toString();
     }
 
+    /**
+     * This function returns last n rows from the object based on position.
+     * It is useful for quickly verifying data, for example, after sorting or appending rows.
+     *
+     * @param n Number of rows to select.
+     * @return The last n rows of the caller object.
+     */
     public String tail(int n){
         StringBuilder stringBuilder = new StringBuilder();
         for(String col : this.columns) stringBuilder.append("       ").append(col);
@@ -124,6 +153,10 @@ public class Dframe {
         return stringBuilder.toString();
     }
 
+    /**
+     * return a string with formatted data frame
+     * @return dataframe to string
+     */
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -140,6 +173,9 @@ public class Dframe {
         return stringBuilder.toString();
     }
 
+    /**
+     * Print the dataframe
+     */
     public void to_string(){
         for(String col : this.columns)
             System.out.print("       " + col);
@@ -153,6 +189,15 @@ public class Dframe {
         System.out.println();
     }
 
+    /**
+     * Purely integer-location based indexing for selection by position.
+     *
+     * .iloc[] is primarily integer position based (from 0 to length-1 of the axis),
+     * but may also be used with a boolean array.
+     *
+     * @param line
+     * @return
+     */
     public Dframe iloc(int line) {
         if(line > this.index.length) return null;
         Dframe dframe = new Dframe(1, this.columns.length);
@@ -165,6 +210,14 @@ public class Dframe {
         return dframe;
     }
 
+    /**
+     * Access a group of rows and columns by label(s) or a boolean array.
+     *
+     * .loc[] is primarily label based, but may also be used with a boolean array.
+     *
+     * @param label
+     * @return
+     */
     public Dframe loc(String label){
         int find = -1;
         for(int j = 0 ; j < this.columns.length ; j++) {
