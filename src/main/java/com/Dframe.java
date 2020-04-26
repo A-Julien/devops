@@ -82,13 +82,13 @@ public class Dframe {
 
             }
         } catch (IOException e) {
-            throw new IOException("can not open");
+            throw new IOException("can not open csv file");
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
-                    throw new IOException("can not open");
+                    throw new IOException("can not open csv file");
                 }
             }
         }
