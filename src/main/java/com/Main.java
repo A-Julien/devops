@@ -19,10 +19,10 @@ public class Main {
         dataframe2.to_string();
 
         System.out.println("On affiche les 2 premiers index du dataframe : ");
-        dataframe.head(2);
+        System.out.println(dataframe.head(2));
 
         System.out.println("On affiche les 2 derniers index du dataframe : ");
-        dataframe.tail(2);
+        System.out.println(dataframe.tail(2));
 
 
         Dframe dataframe3 = dataframe.iloc(0);
