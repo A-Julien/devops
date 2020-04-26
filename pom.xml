@@ -17,6 +17,9 @@
                 <configuration>
                     <parallel>methods</parallel>
                     <threadCount>10</threadCount>
+                    <excludes>
+                        <exclude>**/Main.**</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
@@ -31,6 +34,11 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.5</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*Main.*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -60,7 +68,6 @@
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.7.1</version>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -99,7 +106,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
@@ -151,4 +157,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
 </project>
