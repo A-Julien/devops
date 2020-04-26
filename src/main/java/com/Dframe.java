@@ -94,30 +94,50 @@ public class Dframe {
         return this.columns;
     }
 
-    public void head(int n){
-        for(String col : this.columns)
-            System.out.print("       " + col);
-        System.out.println();
+    public String head(int n){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(String col : this.columns) stringBuilder.append("       ").append(col);
+
+        stringBuilder.append("\n");
         for(int i = 0 ; i < n ;  i++){
-            System.out.print(index[i] + "     ");
+            stringBuilder.append(index[i]).append("     ");
             for(int j = 0 ; j < this.columns.length ;  j++)
-                System.out.print(data[i][j] + "     ");
-            System.out.println();
+                stringBuilder.append(data[i][j]).append("     ");
+            stringBuilder.append("\n");
         }
-        System.out.println();
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
     }
 
-    public void tail(int n){
-        for(String col : this.columns)
-            System.out.print("       " + col);
-        System.out.println();
+    public String tail(int n){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(String col : this.columns) stringBuilder.append("       ").append(col);
+
+        stringBuilder.append("\n");
         for(int i = this.index.length - n ; i < this.index.length ;  i++){
-            System.out.print(index[i] + "     ");
+            stringBuilder.append(index[i]).append("     ");
             for(int j = 0 ; j < this.columns.length ;  j++)
-                System.out.print(data[i][j] + "     ");
-            System.out.println();
+                stringBuilder.append(data[i][j]).append("     ");
+            stringBuilder.append("\n");
         }
-        System.out.println();
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(String col : this.columns)
+            stringBuilder.append("       ").append(col);
+        stringBuilder.append("\n");
+        for(int i = 0 ; i < this.index.length ;  i++){
+            stringBuilder.append(index[i]).append("     ");
+            for(int j = 0 ; j < this.columns.length ;  j++)
+                stringBuilder.append(data[i][j]).append("     ");
+            stringBuilder.append("\n");
+        }
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
     }
 
     public void to_string(){
@@ -134,9 +154,9 @@ public class Dframe {
     }
 
     public Dframe iloc(int line) {
-        if(line > this.index.length)
-            return null;
+        if(line > this.index.length) return null;
         Dframe dframe = new Dframe(1, this.columns.length);
+
         dframe.index[0] = this.index[line];
         for(int j = 0 ; j < this.columns.length ; j++) {
             dframe.columns[j] = this.columns[j];
