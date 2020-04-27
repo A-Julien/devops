@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import Exception.CsvException;
+import Exception.FrameOutOfBound;
+import Exception.IndexException;
 
 public class Dframe {
 
@@ -13,86 +16,86 @@ public class Dframe {
     String[] columns;
     public Object[][] data;
 
-<span class="fc" id="L16">    Dframe(int nb_index, int nb_columns){</span>
-<span class="fc" id="L17">        this.index = new String[nb_index];</span>
-<span class="fc" id="L18">        this.columns = new String[nb_columns];</span>
-<span class="fc" id="L19">        this.data = new Object[nb_index][nb_columns];</span>
-<span class="fc" id="L20">    }</span>
+<span class="fc" id="L19">    Dframe(int nb_index, int nb_columns){</span>
+<span class="fc" id="L20">        this.index = new String[nb_index];</span>
+<span class="fc" id="L21">        this.columns = new String[nb_columns];</span>
+<span class="fc" id="L22">        this.data = new Object[nb_index][nb_columns];</span>
+<span class="fc" id="L23">    }</span>
 
     /**
      * Construct data frame
      *
      * @param data
      */
-<span class="fc" id="L27">    Dframe(Object[][] data){</span>
-<span class="fc" id="L28">        int m = data.length-1;</span>
-<span class="fc" id="L29">        int n = data[0].length;</span>
-<span class="fc" id="L30">        this.index = new String[n];</span>
-<span class="fc" id="L31">        this.columns = new String[m];</span>
-<span class="fc" id="L32">        this.data = new Object[n][m];</span>
+<span class="fc" id="L30">    Dframe(Object[][] data){</span>
+<span class="fc" id="L31">        int m = data.length-1;</span>
+<span class="fc" id="L32">        int n = data[0].length;</span>
+<span class="fc" id="L33">        this.index = new String[n];</span>
+<span class="fc" id="L34">        this.columns = new String[m];</span>
+<span class="fc" id="L35">        this.data = new Object[n][m];</span>
 
-<span class="fc bfc" id="L34" title="All 2 branches covered.">        for(int j = 0 ; j &lt; m ; j++) {</span>
-<span class="fc" id="L35">            columns[j] = (String) data[j+1][0];</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for(int j = 0 ; j &lt; m ; j++) {</span>
+<span class="fc" id="L38">            columns[j] = (String) data[j+1][0];</span>
         }
 
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        for(int i = 0 ; i &lt; n ; i++){</span>
-<span class="fc" id="L39">            index[i] = (String) data[0][i];</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for(int i = 0 ; i &lt; n ; i++){</span>
+<span class="fc" id="L42">            index[i] = (String) data[0][i];</span>
         }
 
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        for(int i = 0 ; i &lt; n; i++) {</span>
-<span class="fc bfc" id="L43" title="All 2 branches covered.">            for(int j = 0 ; j &lt; m ; j++){</span>
-<span class="fc" id="L44">                this.data[i][j] = data[j+1][i+1];</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for(int i = 0 ; i &lt; n; i++) {</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            for(int j = 0 ; j &lt; m ; j++){</span>
+<span class="fc" id="L47">                this.data[i][j] = data[j+1][i+1];</span>
             }
         }
-<span class="fc" id="L47">    }</span>
+<span class="fc" id="L50">    }</span>
 
     /**
      * Construct data frame from csv file
      * @param csvFile the csv file
      * @throws IOException if file not found
      */
-<span class="fc" id="L54">    Dframe(String csvFile) throws IOException {</span>
+<span class="fc" id="L57">    Dframe(String csvFile) throws CsvException {</span>
 
-<span class="fc" id="L56">        BufferedReader br = null;</span>
-<span class="fc" id="L57">        String line = &quot;&quot;;</span>
-<span class="fc" id="L58">        String cvsSplitBy = &quot;,&quot;;</span>
-<span class="fc" id="L59">        List&lt;List&lt;String&gt;&gt; tmp_list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L59">        BufferedReader br = null;</span>
+<span class="fc" id="L60">        String line = &quot;&quot;;</span>
+<span class="fc" id="L61">        String cvsSplitBy = &quot;,&quot;;</span>
+<span class="fc" id="L62">        List&lt;List&lt;String&gt;&gt; tmp_list = new ArrayList&lt;&gt;();</span>
 
         try {
 
-<span class="fc" id="L63">            br = new BufferedReader(new FileReader(csvFile));</span>
-<span class="fc bfc" id="L64" title="All 2 branches covered.">            while ((line = br.readLine()) != null) {</span>
-<span class="fc" id="L65">                String[] tmp = line.split(cvsSplitBy); // use comma as separator</span>
-<span class="fc" id="L66">                tmp_list.add(Arrays.asList(tmp));</span>
-<span class="fc" id="L67">            }</span>
+<span class="fc" id="L66">            br = new BufferedReader(new FileReader(csvFile));</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">            while ((line = br.readLine()) != null) {</span>
+<span class="fc" id="L68">                String[] tmp = line.split(cvsSplitBy); // use comma as separator</span>
+<span class="fc" id="L69">                tmp_list.add(Arrays.asList(tmp));</span>
+<span class="fc" id="L70">            }</span>
 
-<span class="fc" id="L69">            this.index = new String[tmp_list.get(0).size()];</span>
-<span class="fc bfc" id="L70" title="All 2 branches covered.">            for(int i = 0 ; i &lt; tmp_list.get(0).size() ; i++)</span>
-<span class="fc" id="L71">                this.index[i] = tmp_list.get(0).get(i);</span>
+<span class="fc" id="L72">            this.index = new String[tmp_list.get(0).size()];</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">            for(int i = 0 ; i &lt; tmp_list.get(0).size() ; i++)</span>
+<span class="fc" id="L74">                this.index[i] = tmp_list.get(0).get(i);</span>
 
-<span class="fc" id="L73">            this.columns = new String[tmp_list.size()-1];</span>
-<span class="fc bfc" id="L74" title="All 2 branches covered.">            for(int j = 0 ; j &lt; tmp_list.size()-1 ; j++)</span>
-<span class="fc" id="L75">                this.columns[j] = tmp_list.get(j+1).get(0);</span>
+<span class="fc" id="L76">            this.columns = new String[tmp_list.size()-1];</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">            for(int j = 0 ; j &lt; tmp_list.size()-1 ; j++)</span>
+<span class="fc" id="L78">                this.columns[j] = tmp_list.get(j+1).get(0);</span>
 
-<span class="fc" id="L77">            this.data = new Object[index.length][columns.length];</span>
-<span class="fc bfc" id="L78" title="All 2 branches covered.">            for(int i = 0 ; i &lt; index.length ; i++){</span>
-<span class="fc bfc" id="L79" title="All 2 branches covered.">                for(int j = 0 ; j &lt; columns.length ; j++){</span>
-<span class="fc" id="L80">                    this.data[i][j] = tmp_list.get(j+1).get(i+1);</span>
+<span class="fc" id="L80">            this.data = new Object[index.length][columns.length];</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">            for(int i = 0 ; i &lt; index.length ; i++){</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">                for(int j = 0 ; j &lt; columns.length ; j++){</span>
+<span class="fc" id="L83">                    this.data[i][j] = tmp_list.get(j+1).get(i+1);</span>
                 }
 
             }
-<span class="fc" id="L84">        } catch (IOException e) {</span>
-<span class="fc" id="L85">            throw new IOException(&quot;can not open csv file&quot;);</span>
+<span class="fc" id="L87">        } catch (IOException e) {</span>
+<span class="fc" id="L88">            throw new CsvException(&quot;can not open csv file&quot;);</span>
         } finally {
-<span class="fc bfc" id="L87" title="All 2 branches covered.">            if (br != null) {</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">            if (br != null) {</span>
                 try {
-<span class="fc" id="L89">                    br.close();</span>
-<span class="nc" id="L90">                } catch (IOException e) {</span>
-<span class="nc" id="L91">                    throw new IOException(&quot;can not open csv file&quot;);</span>
-<span class="fc" id="L92">                }</span>
+<span class="fc" id="L92">                    br.close();</span>
+<span class="nc" id="L93">                } catch (IOException e) {</span>
+<span class="nc" id="L94">                    throw new CsvException(&quot;can not open csv file&quot;);</span>
+<span class="fc" id="L95">                }</span>
             }
         }
-<span class="fc" id="L95">    }</span>
+<span class="fc" id="L98">    }</span>
 
     /**
      * Return a specifique columns of the data frame
@@ -100,7 +103,7 @@ public class Dframe {
      * @return
      */
     public String[] getIndex(){
-<span class="nc" id="L103">        return this.index;</span>
+<span class="nc" id="L106">        return this.index;</span>
     }
 
     /**
@@ -109,7 +112,7 @@ public class Dframe {
      * @return column
      */
     public String[] getColumns(){
-<span class="fc" id="L112">        return this.columns;</span>
+<span class="fc" id="L115">        return this.columns;</span>
     }
 
     /**
@@ -120,18 +123,18 @@ public class Dframe {
      * @return The first n rows of the caller object.
      */
     public String head(int n){
-<span class="fc" id="L123">        StringBuilder stringBuilder = new StringBuilder();</span>
-<span class="fc bfc" id="L124" title="All 2 branches covered.">        for(String col : this.columns) stringBuilder.append(&quot;       &quot;).append(col);</span>
+<span class="fc" id="L126">        StringBuilder stringBuilder = new StringBuilder();</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        for(String col : this.columns) stringBuilder.append(&quot;       &quot;).append(col);</span>
 
-<span class="fc" id="L126">        stringBuilder.append(&quot;\n&quot;);</span>
-<span class="fc bfc" id="L127" title="All 2 branches covered.">        for(int i = 0 ; i &lt; n ;  i++){</span>
-<span class="fc" id="L128">            stringBuilder.append(index[i]).append(&quot;     &quot;);</span>
-<span class="fc bfc" id="L129" title="All 2 branches covered.">            for(int j = 0 ; j &lt; this.columns.length ;  j++)</span>
-<span class="fc" id="L130">                stringBuilder.append(data[i][j]).append(&quot;     &quot;);</span>
-<span class="fc" id="L131">            stringBuilder.append(&quot;\n&quot;);</span>
+<span class="fc" id="L129">        stringBuilder.append(&quot;\n&quot;);</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">        for(int i = 0 ; i &lt; n ;  i++){</span>
+<span class="fc" id="L131">            stringBuilder.append(index[i]).append(&quot;     &quot;);</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">            for(int j = 0 ; j &lt; this.columns.length ;  j++)</span>
+<span class="fc" id="L133">                stringBuilder.append(data[i][j]).append(&quot;     &quot;);</span>
+<span class="fc" id="L134">            stringBuilder.append(&quot;\n&quot;);</span>
         }
-<span class="fc" id="L133">        stringBuilder.append(&quot;\n&quot;);</span>
-<span class="fc" id="L134">        return stringBuilder.toString();</span>
+<span class="fc" id="L136">        stringBuilder.append(&quot;\n&quot;);</span>
+<span class="fc" id="L137">        return stringBuilder.toString();</span>
     }
 
     /**
@@ -142,18 +145,18 @@ public class Dframe {
      * @return The last n rows of the caller object.
      */
     public String tail(int n){
-<span class="fc" id="L145">        StringBuilder stringBuilder = new StringBuilder();</span>
-<span class="fc bfc" id="L146" title="All 2 branches covered.">        for(String col : this.columns) stringBuilder.append(&quot;       &quot;).append(col);</span>
+<span class="fc" id="L148">        StringBuilder stringBuilder = new StringBuilder();</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        for(String col : this.columns) stringBuilder.append(&quot;       &quot;).append(col);</span>
 
-<span class="fc" id="L148">        stringBuilder.append(&quot;\n&quot;);</span>
-<span class="fc bfc" id="L149" title="All 2 branches covered.">        for(int i = this.index.length - n ; i &lt; this.index.length ;  i++){</span>
-<span class="fc" id="L150">            stringBuilder.append(index[i]).append(&quot;     &quot;);</span>
-<span class="fc bfc" id="L151" title="All 2 branches covered.">            for(int j = 0 ; j &lt; this.columns.length ;  j++)</span>
-<span class="fc" id="L152">                stringBuilder.append(data[i][j]).append(&quot;     &quot;);</span>
-<span class="fc" id="L153">            stringBuilder.append(&quot;\n&quot;);</span>
+<span class="fc" id="L151">        stringBuilder.append(&quot;\n&quot;);</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">        for(int i = this.index.length - n ; i &lt; this.index.length ;  i++){</span>
+<span class="fc" id="L153">            stringBuilder.append(index[i]).append(&quot;     &quot;);</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">            for(int j = 0 ; j &lt; this.columns.length ;  j++)</span>
+<span class="fc" id="L155">                stringBuilder.append(data[i][j]).append(&quot;     &quot;);</span>
+<span class="fc" id="L156">            stringBuilder.append(&quot;\n&quot;);</span>
         }
-<span class="fc" id="L155">        stringBuilder.append(&quot;\n&quot;);</span>
-<span class="fc" id="L156">        return stringBuilder.toString();</span>
+<span class="fc" id="L158">        stringBuilder.append(&quot;\n&quot;);</span>
+<span class="fc" id="L159">        return stringBuilder.toString();</span>
     }
 
     /**
@@ -162,35 +165,35 @@ public class Dframe {
      */
     @Override
     public String toString() {
-<span class="fc" id="L165">        StringBuilder stringBuilder = new StringBuilder();</span>
-<span class="fc bfc" id="L166" title="All 2 branches covered.">        for(String col : this.columns)</span>
-<span class="fc" id="L167">            stringBuilder.append(&quot;       &quot;).append(col);</span>
-<span class="fc" id="L168">        stringBuilder.append(&quot;\n&quot;);</span>
-<span class="fc bfc" id="L169" title="All 2 branches covered.">        for(int i = 0 ; i &lt; this.index.length ;  i++){</span>
-<span class="fc" id="L170">            stringBuilder.append(index[i]).append(&quot;     &quot;);</span>
-<span class="fc bfc" id="L171" title="All 2 branches covered.">            for(int j = 0 ; j &lt; this.columns.length ;  j++)</span>
-<span class="fc" id="L172">                stringBuilder.append(data[i][j]).append(&quot;     &quot;);</span>
-<span class="fc" id="L173">            stringBuilder.append(&quot;\n&quot;);</span>
+<span class="fc" id="L168">        StringBuilder stringBuilder = new StringBuilder();</span>
+<span class="fc bfc" id="L169" title="All 2 branches covered.">        for(String col : this.columns)</span>
+<span class="fc" id="L170">            stringBuilder.append(&quot;       &quot;).append(col);</span>
+<span class="fc" id="L171">        stringBuilder.append(&quot;\n&quot;);</span>
+<span class="fc bfc" id="L172" title="All 2 branches covered.">        for(int i = 0 ; i &lt; this.index.length ;  i++){</span>
+<span class="fc" id="L173">            stringBuilder.append(index[i]).append(&quot;     &quot;);</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">            for(int j = 0 ; j &lt; this.columns.length ;  j++)</span>
+<span class="fc" id="L175">                stringBuilder.append(data[i][j]).append(&quot;     &quot;);</span>
+<span class="fc" id="L176">            stringBuilder.append(&quot;\n&quot;);</span>
         }
-<span class="fc" id="L175">        stringBuilder.append(&quot;\n&quot;);</span>
-<span class="fc" id="L176">        return stringBuilder.toString();</span>
+<span class="fc" id="L178">        stringBuilder.append(&quot;\n&quot;);</span>
+<span class="fc" id="L179">        return stringBuilder.toString();</span>
     }
 
     /**
      * Print the dataframe
      */
     public void to_string(){
-<span class="fc bfc" id="L183" title="All 2 branches covered.">        for(String col : this.columns)</span>
-<span class="fc" id="L184">            System.out.print(&quot;       &quot; + col);</span>
-<span class="fc" id="L185">        System.out.println();</span>
-<span class="fc bfc" id="L186" title="All 2 branches covered.">        for(int i = 0 ; i &lt; this.index.length ;  i++){</span>
-<span class="fc" id="L187">            System.out.print(index[i] + &quot;     &quot;);</span>
-<span class="fc bfc" id="L188" title="All 2 branches covered.">            for(int j = 0 ; j &lt; this.columns.length ;  j++)</span>
-<span class="fc" id="L189">                System.out.print(data[i][j] + &quot;     &quot;);</span>
-<span class="fc" id="L190">            System.out.println();</span>
+<span class="fc bfc" id="L186" title="All 2 branches covered.">        for(String col : this.columns)</span>
+<span class="fc" id="L187">            System.out.print(&quot;       &quot; + col);</span>
+<span class="fc" id="L188">        System.out.println();</span>
+<span class="fc bfc" id="L189" title="All 2 branches covered.">        for(int i = 0 ; i &lt; this.index.length ;  i++){</span>
+<span class="fc" id="L190">            System.out.print(index[i] + &quot;     &quot;);</span>
+<span class="fc bfc" id="L191" title="All 2 branches covered.">            for(int j = 0 ; j &lt; this.columns.length ;  j++)</span>
+<span class="fc" id="L192">                System.out.print(data[i][j] + &quot;     &quot;);</span>
+<span class="fc" id="L193">            System.out.println();</span>
         }
-<span class="fc" id="L192">        System.out.println();</span>
-<span class="fc" id="L193">    }</span>
+<span class="fc" id="L195">        System.out.println();</span>
+<span class="fc" id="L196">    }</span>
 
     /**
      * Purely integer-location based indexing for selection by position.
@@ -201,16 +204,16 @@ public class Dframe {
      * @param line
      * @return
      */
-    public Dframe iloc(int line) {
-<span class="fc bfc" id="L205" title="All 2 branches covered.">        if(line &gt; this.index.length) return null;</span>
-<span class="fc" id="L206">        Dframe dframe = new Dframe(1, this.columns.length);</span>
+    public Dframe iloc(int line) throws FrameOutOfBound {
+<span class="fc bfc" id="L208" title="All 2 branches covered.">        if(line &gt; this.index.length) throw new FrameOutOfBound(&quot;frame out frame&quot;);</span>
+<span class="fc" id="L209">        Dframe dframe = new Dframe(1, this.columns.length);</span>
 
-<span class="fc" id="L208">        dframe.index[0] = this.index[line];</span>
-<span class="fc bfc" id="L209" title="All 2 branches covered.">        for(int j = 0 ; j &lt; this.columns.length ; j++) {</span>
-<span class="fc" id="L210">            dframe.columns[j] = this.columns[j];</span>
-<span class="fc" id="L211">            dframe.data[0][j] = this.data[line][j];</span>
+<span class="fc" id="L211">        dframe.index[0] = this.index[line];</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">        for(int j = 0 ; j &lt; this.columns.length ; j++) {</span>
+<span class="fc" id="L213">            dframe.columns[j] = this.columns[j];</span>
+<span class="fc" id="L214">            dframe.data[0][j] = this.data[line][j];</span>
         }
-<span class="fc" id="L213">        return dframe;</span>
+<span class="fc" id="L216">        return dframe;</span>
     }
 
     /**
@@ -221,21 +224,20 @@ public class Dframe {
      * @param label
      * @return
      */
-    public Dframe loc(String label){
-<span class="fc" id="L225">        int find = -1;</span>
-<span class="fc bfc" id="L226" title="All 2 branches covered.">        for(int j = 0 ; j &lt; this.columns.length ; j++) {</span>
-<span class="fc bfc" id="L227" title="All 2 branches covered.">            if (columns[j].equals(label))</span>
-<span class="fc" id="L228">                find = j;</span>
+    public Dframe loc(String label) throws IndexException {
+<span class="fc" id="L228">        int find = -1;</span>
+<span class="fc bfc" id="L229" title="All 2 branches covered.">        for(int j = 0 ; j &lt; this.columns.length ; j++) {</span>
+<span class="fc bfc" id="L230" title="All 2 branches covered.">            if (columns[j].equals(label))</span>
+<span class="fc" id="L231">                find = j;</span>
         }
-<span class="fc bfc" id="L230" title="All 2 branches covered.">        if(find == -1)</span>
-<span class="fc" id="L231">            return null;</span>
-<span class="fc" id="L232">        Dframe dframe = new Dframe(this.index.length, 1);</span>
-<span class="fc" id="L233">        dframe.columns[0] = label;</span>
-<span class="fc bfc" id="L234" title="All 2 branches covered.">        for(int i = 0 ; i &lt; this.index.length ; i++) {</span>
-<span class="fc" id="L235">            dframe.index[i] = this.index[i];</span>
-<span class="fc" id="L236">            dframe.data[i][0] = this.data[i][find];</span>
+<span class="fc bfc" id="L233" title="All 2 branches covered.">        if(find == -1) throw new IndexException(&quot;can not find :&quot; + find);</span>
+<span class="fc" id="L234">        Dframe dframe = new Dframe(this.index.length, 1);</span>
+<span class="fc" id="L235">        dframe.columns[0] = label;</span>
+<span class="fc bfc" id="L236" title="All 2 branches covered.">        for(int i = 0 ; i &lt; this.index.length ; i++) {</span>
+<span class="fc" id="L237">            dframe.index[i] = this.index[i];</span>
+<span class="fc" id="L238">            dframe.data[i][0] = this.data[i][find];</span>
         }
-<span class="fc" id="L238">        return dframe;</span>
+<span class="fc" id="L240">        return dframe;</span>
     }
 }
 
