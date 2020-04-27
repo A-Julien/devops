@@ -1,0 +1,9 @@
+---
+- hosts: gcp
+  become: true
+  tasks:
+    - docker_container:
+          name: devops
+          image: jalaimo/travis-ci-build-devops
+          state: present
+          recreate: no

@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import Exception.CsvException;
+import Exception.FrameOutOfBound;
+import Exception.IndexException;
 
 public class Dframe {
 
@@ -51,7 +54,7 @@ public class Dframe {
      * @param csvFile the csv file
      * @throws IOException if file not found
      */
-    Dframe(String csvFile) throws IOException {
+    Dframe(String csvFile) throws CsvException {
 
         BufferedReader br = null;
         String line = "";
@@ -82,13 +85,13 @@ public class Dframe {
 
             }
         } catch (IOException e) {
-            throw new IOException("can not open csv file");
+            throw new CsvException("can not open csv file");
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
-                    throw new IOException("can not open csv file");
+                    throw new CsvException("can not open csv file");
                 }
             }
         }
@@ -201,8 +204,8 @@ public class Dframe {
      * @param line
      * @return
      */
-    public Dframe iloc(int line) {
-        if(line > this.index.length) return null;
+    public Dframe iloc(int line) throws FrameOutOfBound {
+        if(line > this.index.length) throw new FrameOutOfBound("frame out frame");
         Dframe dframe = new Dframe(1, this.columns.length);
 
         dframe.index[0] = this.index[line];
@@ -221,14 +224,13 @@ public class Dframe {
      * @param label
      * @return
      */
-    public Dframe loc(String label){
+    public Dframe loc(String label) throws IndexException {
         int find = -1;
         for(int j = 0 ; j < this.columns.length ; j++) {
             if (columns[j].equals(label))
                 find = j;
         }
-        if(find == -1)
-            return null;
+        if(find == -1) throw new IndexException("can not find :" + find);
         Dframe dframe = new Dframe(this.index.length, 1);
         dframe.columns[0] = label;
         for(int i = 0 ; i < this.index.length ; i++) {

@@ -3,13 +3,18 @@ package com;
 import static junit.framework.Assert.*;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
 
+import  Exception.CsvException;
+import  Exception.FrameOutOfBound;
+import  Exception.IndexException;
+
 public class TestBase {
-    Object[][] data = null;
+    private Object[][] data = null;
 
     @Before
     public void init(){
@@ -22,13 +27,13 @@ public class TestBase {
     }
 
     @Test
-    public void testOpeningFile() throws IOException {
-        Dframe dframe = new Dframe("src/main/resources/data.csv");
+    public void testOpeningFile() throws CsvException {
+        new Dframe("src/main/resources/data.csv").to_string();
     }
 
-    @Test(expected = IOException.class)
-    public void testDframeExcéption() throws IOException {
-        Dframe dframe = new Dframe("src//data.csv");
+    @Test(expected = CsvException.class)
+    public void testDframeExcéption() throws CsvException {
+        new Dframe("bad/path/data.csv");
     }
 
     @Test
@@ -40,36 +45,37 @@ public class TestBase {
     @Test
     public void testHead(){
         Dframe dframe = new Dframe(this.data);
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 1; i < 3; ++i) {
-            assertEquals(i + 1, dframe.head(i).split("\n").length);
-            //dframe.head(i).
-        }
-       // System.out.println(this.data[0][1]);
+        for (int i = 1; i < 3; ++i) assertEquals(i + 1, dframe.head(i).split("\n").length);
+        assertTrue(dframe.head(1).contains("Julien"));
+        assertFalse(dframe.head(1).contains("Hugo"));
+        assertFalse(dframe.head(1).contains("Laura"));
     }
 
     @Test
     public void testTail(){
         Dframe dframe = new Dframe(this.data);
         for (int i = 1; i < 3; ++i) assertEquals(i + 1, dframe.tail(i).split("\n").length);
+
+        assertFalse(dframe.tail(1).contains("Julien"));
+        assertFalse(dframe.tail(1).contains("Hugo"));
+        assertTrue(dframe.tail(1).contains("Laura"));
     }
 
-    @Test
-    public void testIloc(){
+    @Test(expected = FrameOutOfBound.class)
+    public void testIloc() throws FrameOutOfBound {
         Dframe dframe = new Dframe(this.data);
-        Dframe dframe1 = dframe.iloc(10);
-        assertNull(dframe1);
+        dframe.iloc(10);
     }
 
     @Test
-    public void testIloc2(){
+    public void testIloc2() throws FrameOutOfBound {
         Dframe dframe = new Dframe(this.data);
         Dframe dframe1 = dframe.iloc(1);
         System.out.println(dframe1.toString());
     }
 
     @Test
-    public void testLoc(){
+    public void testLoc() throws IndexException {
         Dframe dframe = new Dframe(this.data);
         Dframe dframe1 = dframe.loc("Age");
         assertEquals(Integer.parseInt((String) dframe1.data[0][0]), 24);
@@ -77,12 +83,13 @@ public class TestBase {
         assertEquals(Integer.parseInt((String) dframe1.data[2][0]), 23);
     }
 
-    @Test
-    public void testLoc2(){
+    @Test(expected = IndexException.class)
+    public void testLoc2() throws IndexException {
         Dframe dframe = new Dframe(this.data);
-        assertNull(dframe.loc("Doc"));
+        dframe.loc("Doc");
     }
 
+    @Ignore
     @Test
     public void testToString(){
         Dframe dframe = new Dframe(this.data);

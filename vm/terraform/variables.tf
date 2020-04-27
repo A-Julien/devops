@@ -13,4 +13,3 @@ variable "zone" {
 variable "instance-name" {
   default = "terraform-instance"
 }
-

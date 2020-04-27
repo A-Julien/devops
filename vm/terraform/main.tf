@@ -32,7 +32,16 @@ resource "google_compute_instance" "vm_instance" {
   }
 }
 
-// A variable for extracting the external ip of the instance
-output "ip" {
- value = google_compute_instance.vm_instance[0].network_interface[0].access_config[0].nat_ip
+
+/*provisioner "local-exec" {
+  command = "ansible-playbook -i '${self.public_ip},' --private-key ${var.ssh_key_private} ../ansible-apache/playbook/master.yml"
 }
+
+
+provisioner "remote-exec" {
+  connection {
+    type        = "ssh"
+    user        = "devops"
+    private_key = "${file(var.ssh_key_private)}"
+  }
+}*/
