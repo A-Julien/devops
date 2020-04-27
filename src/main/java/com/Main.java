@@ -2,9 +2,10 @@ package com;
 
 
 import java.io.IOException;
+import Exception.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, CsvException, FrameOutOfBound, IndexException {
         Object[][] data = { {"Julien", "Hugo", "Laura"},
                             {"Age", "24", "23", "23"},
                             {"Domicile", "Coin Paumé", "Grenoble", "Grenoble"},
