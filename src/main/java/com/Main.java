@@ -14,11 +14,11 @@ public class Main {
         Dframe dataframe = new Dframe(data);
         System.out.println("On affiche le dataframe obtenu via un tableau : ");
         dataframe.to_string();
-/*
+
         Dframe dataframe2 = new Dframe("/app/data.csv");
         System.out.println("On affiche le dataframe obtenu via un fichier csv : ");
         dataframe2.to_string();
-*/
+
         System.out.println("On affiche les 2 premiers index du dataframe : ");
         System.out.println(dataframe.head(2));
 

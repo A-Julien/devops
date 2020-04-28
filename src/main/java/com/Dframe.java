@@ -299,5 +299,9 @@ public class Dframe {
         }
         return min;
     }
+
+    public Object[][] getData() {
+        return data;
+    }
 }
 
