@@ -14,11 +14,11 @@ public class Main {
         Dframe dataframe = new Dframe(data);
         System.out.println("On affiche le dataframe obtenu via un tableau : ");
         dataframe.to_string();
-
+/*
         Dframe dataframe2 = new Dframe("/app/data.csv");
         System.out.println("On affiche le dataframe obtenu via un fichier csv : ");
         dataframe2.to_string();
-
+*/
         System.out.println("On affiche les 2 premiers index du dataframe : ");
         System.out.println(dataframe.head(2));
 
@@ -34,5 +34,9 @@ public class Main {
         System.out.println("On affiche le dataframe obtenu via sélection du label \"Domicile\" : ");
         dataframe4.to_string();
 
+        System.out.println("Calcul :");
+        System.out.println("Moyenne d'age : " + dataframe.mean("Age"));
+        System.out.println("Age maximum : " + dataframe.max("Age"));
+        System.out.println("Age minimum : " + dataframe.min("Age"));
     }
 }

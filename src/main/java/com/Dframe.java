@@ -217,6 +217,20 @@ public class Dframe {
     }
 
     /**
+     * Check if parameter label belongs to the dataframe
+     * @param label
+     * @return index of the label if it does, -1 otherwise
+     */
+    private int find(String label){
+        int b = -1;
+        for(int j = 0 ; j < this.columns.length ; j++) {
+            if (columns[j].equals(label))
+                b = j;
+        }
+        return b;
+    }
+
+    /**
      * Access a group of rows and columns by label(s) or a boolean array.
      *
      * .loc[] is primarily label based, but may also be used with a boolean array.
@@ -225,19 +239,65 @@ public class Dframe {
      * @return
      */
     public Dframe loc(String label) throws IndexException {
-        int find = -1;
-        for(int j = 0 ; j < this.columns.length ; j++) {
-            if (columns[j].equals(label))
-                find = j;
-        }
-        if(find == -1) throw new IndexException("can not find :" + find);
+        int k = find(label);
+        if(k == -1) throw new IndexException("can not find :" + label);
         Dframe dframe = new Dframe(this.index.length, 1);
         dframe.columns[0] = label;
         for(int i = 0 ; i < this.index.length ; i++) {
             dframe.index[i] = this.index[i];
-            dframe.data[i][0] = this.data[i][find];
+            dframe.data[i][0] = this.data[i][k];
         }
         return dframe;
+    }
+
+    /**
+     * Compute the mean of values of column label. Values must be numbers.
+     * @param label
+     * @return mean of values, -1 if label not found
+     */
+    public float mean(String label){
+        int k = find(label);
+        if(k  == -1)
+            return -1;
+        float sum = 0;
+        for(int i = 0 ; i < this.index.length ; i++){
+            sum = sum + Float.parseFloat((String) this.data[i][k]);
+        }
+        return sum/this.index.length;
+    }
+
+    /**
+     * Compute the max of values of column label. Values must be numbers.
+     * @param label
+     * @return max of values, -1 if label not found
+     */
+    public float max(String label){
+        int k = find(label);
+        if(k == -1)
+            return -1;
+        float max = Float.parseFloat((String)this.data[0][k]);
+        for(int i = 1 ; i < this.index.length ; i++){
+            if(max > Float.parseFloat((String)this.data[i][k]))
+                max = Float.parseFloat((String)this.data[i][k]);
+        }
+        return max;
+    }
+
+    /**
+     * Compute the min of values of column label. Values must be numbers.
+     * @param label
+     * @return min of values, -1 if label not found
+     */
+    public float min(String label){
+        int k = find(label);
+        if(k == -1)
+            return -1;
+        float min = Float.parseFloat((String)this.data[0][k]);
+        for(int i = 1 ; i < this.index.length ; i++){
+            if(min < Float.parseFloat((String)this.data[i][k]))
+                min = Float.parseFloat((String)this.data[i][k]);
+        }
+        return min;
     }
 }
 
