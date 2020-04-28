@@ -102,6 +102,7 @@ public class Dframe {
      *
      * @return
      */
+    @Generated
     public String[] getIndex(){
         return this.index;
     }
@@ -300,6 +301,7 @@ public class Dframe {
         return min;
     }
 
+    @Generated
     public Object[][] getData() {
         return data;
     }
