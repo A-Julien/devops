@@ -256,14 +256,14 @@ public class Dframe {
      * @return mean of values, -1 if label not found
      */
     public float mean(String label){
-<span class="nc" id="L259">        int k = find(label);</span>
-<span class="nc bnc" id="L260" title="All 2 branches missed.">        if(k  == -1)</span>
-<span class="nc" id="L261">            return -1;</span>
-<span class="nc" id="L262">        float sum = 0;</span>
-<span class="nc bnc" id="L263" title="All 2 branches missed.">        for(int i = 0 ; i &lt; this.index.length ; i++){</span>
-<span class="nc" id="L264">            sum = sum + Float.parseFloat((String) this.data[i][k]);</span>
+<span class="fc" id="L259">        int k = find(label);</span>
+<span class="fc bfc" id="L260" title="All 2 branches covered.">        if(k  == -1)</span>
+<span class="fc" id="L261">            return -1;</span>
+<span class="fc" id="L262">        float sum = 0;</span>
+<span class="fc bfc" id="L263" title="All 2 branches covered.">        for(int i = 0 ; i &lt; this.index.length ; i++){</span>
+<span class="fc" id="L264">            sum = sum + Float.parseFloat((String) this.data[i][k]);</span>
         }
-<span class="nc" id="L266">        return sum/this.index.length;</span>
+<span class="fc" id="L266">        return sum/this.index.length;</span>
     }
 
     /**
@@ -271,16 +271,16 @@ public class Dframe {
      * @param label
      * @return max of values, -1 if label not found
      */
-    public float max(String label){
-<span class="nc" id="L275">        int k = find(label);</span>
-<span class="nc bnc" id="L276" title="All 2 branches missed.">        if(k == -1)</span>
-<span class="nc" id="L277">            return -1;</span>
-<span class="nc" id="L278">        float max = Float.parseFloat((String)this.data[0][k]);</span>
-<span class="nc bnc" id="L279" title="All 2 branches missed.">        for(int i = 1 ; i &lt; this.index.length ; i++){</span>
-<span class="nc bnc" id="L280" title="All 2 branches missed.">            if(max &gt; Float.parseFloat((String)this.data[i][k]))</span>
-<span class="nc" id="L281">                max = Float.parseFloat((String)this.data[i][k]);</span>
+    public float min(String label){
+<span class="fc" id="L275">        int k = find(label);</span>
+<span class="fc bfc" id="L276" title="All 2 branches covered.">        if(k == -1)</span>
+<span class="fc" id="L277">            return -1;</span>
+<span class="fc" id="L278">        float max = Float.parseFloat((String)this.data[0][k]);</span>
+<span class="fc bfc" id="L279" title="All 2 branches covered.">        for(int i = 1 ; i &lt; this.index.length ; i++){</span>
+<span class="fc bfc" id="L280" title="All 2 branches covered.">            if(max &gt; Float.parseFloat((String)this.data[i][k]))</span>
+<span class="fc" id="L281">                max = Float.parseFloat((String)this.data[i][k]);</span>
         }
-<span class="nc" id="L283">        return max;</span>
+<span class="fc" id="L283">        return max;</span>
     }
 
     /**
@@ -288,16 +288,16 @@ public class Dframe {
      * @param label
      * @return min of values, -1 if label not found
      */
-    public float min(String label){
-<span class="nc" id="L292">        int k = find(label);</span>
-<span class="nc bnc" id="L293" title="All 2 branches missed.">        if(k == -1)</span>
-<span class="nc" id="L294">            return -1;</span>
-<span class="nc" id="L295">        float min = Float.parseFloat((String)this.data[0][k]);</span>
-<span class="nc bnc" id="L296" title="All 2 branches missed.">        for(int i = 1 ; i &lt; this.index.length ; i++){</span>
-<span class="nc bnc" id="L297" title="All 2 branches missed.">            if(min &lt; Float.parseFloat((String)this.data[i][k]))</span>
+    public float max(String label){
+<span class="fc" id="L292">        int k = find(label);</span>
+<span class="fc bfc" id="L293" title="All 2 branches covered.">        if(k == -1)</span>
+<span class="fc" id="L294">            return -1;</span>
+<span class="fc" id="L295">        float min = Float.parseFloat((String)this.data[0][k]);</span>
+<span class="fc bfc" id="L296" title="All 2 branches covered.">        for(int i = 1 ; i &lt; this.index.length ; i++){</span>
+<span class="pc bpc" id="L297" title="1 of 2 branches missed.">            if(min &lt; Float.parseFloat((String)this.data[i][k]))</span>
 <span class="nc" id="L298">                min = Float.parseFloat((String)this.data[i][k]);</span>
         }
-<span class="nc" id="L300">        return min;</span>
+<span class="fc" id="L300">        return min;</span>
     }
 
     public Object[][] getData() {
