@@ -1,2 +1,21 @@
-ignore:
-  - "**/*Main.*"
+coverage:
+  status:
+    project:
+      default:
+        # basic
+        target: auto
+        threshold: 80%
+        base: auto
+        flags:
+          - unit
+        paths:
+          - "src"
+        # advanced
+        branches:
+          - master
+        if_not_found: success
+        if_ci_failed: error
+        informational: False
+        only_pulls: false
+        ignore:
+          - "**/*Main.*"
