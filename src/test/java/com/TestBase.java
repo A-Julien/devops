@@ -78,9 +78,9 @@ public class TestBase {
     public void testLoc() throws IndexException {
         Dframe dframe = new Dframe(this.data);
         Dframe dframe1 = dframe.loc("Age");
-        assertEquals(Integer.parseInt((String) dframe1.data[0][0]), 24);
-        assertEquals(Integer.parseInt((String) dframe1.data[1][0]), 23);
-        assertEquals(Integer.parseInt((String) dframe1.data[2][0]), 23);
+        assertEquals(Integer.parseInt((String) (dframe1.getData())[0][0]), 24);
+        assertEquals(Integer.parseInt((String) (dframe1.getData())[1][0]), 23);
+        assertEquals(Integer.parseInt((String) (dframe1.getData())[2][0]), 23);
     }
 
     @Test(expected = IndexException.class)
