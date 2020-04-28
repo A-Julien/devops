@@ -217,6 +217,20 @@ public class Dframe {
     }
 
     /**
+     * Check if parameter label belongs to the dataframe
+     * @param label
+     * @return index of the label if it does, -1 otherwise
+     */
+    private int find(String label){
+<span class="fc" id="L225">        int b = -1;</span>
+<span class="fc bfc" id="L226" title="All 2 branches covered.">        for(int j = 0 ; j &lt; this.columns.length ; j++) {</span>
+<span class="fc bfc" id="L227" title="All 2 branches covered.">            if (columns[j].equals(label))</span>
+<span class="fc" id="L228">                b = j;</span>
+        }
+<span class="fc" id="L230">        return b;</span>
+    }
+
+    /**
      * Access a group of rows and columns by label(s) or a boolean array.
      *
      * .loc[] is primarily label based, but may also be used with a boolean array.
@@ -225,19 +239,65 @@ public class Dframe {
      * @return
      */
     public Dframe loc(String label) throws IndexException {
-<span class="fc" id="L228">        int find = -1;</span>
-<span class="fc bfc" id="L229" title="All 2 branches covered.">        for(int j = 0 ; j &lt; this.columns.length ; j++) {</span>
-<span class="fc bfc" id="L230" title="All 2 branches covered.">            if (columns[j].equals(label))</span>
-<span class="fc" id="L231">                find = j;</span>
+<span class="fc" id="L242">        int k = find(label);</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">        if(k == -1) throw new IndexException(&quot;can not find :&quot; + label);</span>
+<span class="fc" id="L244">        Dframe dframe = new Dframe(this.index.length, 1);</span>
+<span class="fc" id="L245">        dframe.columns[0] = label;</span>
+<span class="fc bfc" id="L246" title="All 2 branches covered.">        for(int i = 0 ; i &lt; this.index.length ; i++) {</span>
+<span class="fc" id="L247">            dframe.index[i] = this.index[i];</span>
+<span class="fc" id="L248">            dframe.data[i][0] = this.data[i][k];</span>
         }
-<span class="fc bfc" id="L233" title="All 2 branches covered.">        if(find == -1) throw new IndexException(&quot;can not find :&quot; + find);</span>
-<span class="fc" id="L234">        Dframe dframe = new Dframe(this.index.length, 1);</span>
-<span class="fc" id="L235">        dframe.columns[0] = label;</span>
-<span class="fc bfc" id="L236" title="All 2 branches covered.">        for(int i = 0 ; i &lt; this.index.length ; i++) {</span>
-<span class="fc" id="L237">            dframe.index[i] = this.index[i];</span>
-<span class="fc" id="L238">            dframe.data[i][0] = this.data[i][find];</span>
+<span class="fc" id="L250">        return dframe;</span>
+    }
+
+    /**
+     * Compute the mean of values of column label. Values must be numbers.
+     * @param label
+     * @return mean of values, -1 if label not found
+     */
+    public float mean(String label){
+<span class="nc" id="L259">        int k = find(label);</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">        if(k  == -1)</span>
+<span class="nc" id="L261">            return -1;</span>
+<span class="nc" id="L262">        float sum = 0;</span>
+<span class="nc bnc" id="L263" title="All 2 branches missed.">        for(int i = 0 ; i &lt; this.index.length ; i++){</span>
+<span class="nc" id="L264">            sum = sum + Float.parseFloat((String) this.data[i][k]);</span>
         }
-<span class="fc" id="L240">        return dframe;</span>
+<span class="nc" id="L266">        return sum/this.index.length;</span>
+    }
+
+    /**
+     * Compute the max of values of column label. Values must be numbers.
+     * @param label
+     * @return max of values, -1 if label not found
+     */
+    public float max(String label){
+<span class="nc" id="L275">        int k = find(label);</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">        if(k == -1)</span>
+<span class="nc" id="L277">            return -1;</span>
+<span class="nc" id="L278">        float max = Float.parseFloat((String)this.data[0][k]);</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">        for(int i = 1 ; i &lt; this.index.length ; i++){</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">            if(max &gt; Float.parseFloat((String)this.data[i][k]))</span>
+<span class="nc" id="L281">                max = Float.parseFloat((String)this.data[i][k]);</span>
+        }
+<span class="nc" id="L283">        return max;</span>
+    }
+
+    /**
+     * Compute the min of values of column label. Values must be numbers.
+     * @param label
+     * @return min of values, -1 if label not found
+     */
+    public float min(String label){
+<span class="nc" id="L292">        int k = find(label);</span>
+<span class="nc bnc" id="L293" title="All 2 branches missed.">        if(k == -1)</span>
+<span class="nc" id="L294">            return -1;</span>
+<span class="nc" id="L295">        float min = Float.parseFloat((String)this.data[0][k]);</span>
+<span class="nc bnc" id="L296" title="All 2 branches missed.">        for(int i = 1 ; i &lt; this.index.length ; i++){</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">            if(min &lt; Float.parseFloat((String)this.data[i][k]))</span>
+<span class="nc" id="L298">                min = Float.parseFloat((String)this.data[i][k]);</span>
+        }
+<span class="nc" id="L300">        return min;</span>
     }
 }
 
