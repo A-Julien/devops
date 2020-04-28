@@ -12,9 +12,9 @@ import Exception.IndexException;
 
 public class Dframe {
 
-    String[] index;
-    String[] columns;
-    public Object[][] data;
+    private String[] index;
+    private String[] columns;
+    private Object[][] data;
 
 <span class="fc" id="L19">    Dframe(int nb_index, int nb_columns){</span>
 <span class="fc" id="L20">        this.index = new String[nb_index];</span>
@@ -298,6 +298,10 @@ public class Dframe {
 <span class="nc" id="L298">                min = Float.parseFloat((String)this.data[i][k]);</span>
         }
 <span class="nc" id="L300">        return min;</span>
+    }
+
+    public Object[][] getData() {
+<span class="fc" id="L304">        return data;</span>
     }
 }
 
