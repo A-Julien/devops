@@ -95,4 +95,40 @@ public class TestBase {
         Dframe dframe = new Dframe(this.data);
         dframe.to_string();
     }
+
+    @Test
+    public void testMin(){
+        Dframe dframe = new Dframe(this.data);
+        assertEquals(23, (int) dframe.min("Age"));
+    }
+
+    @Test
+    public void testMin2(){
+        Dframe dframe = new Dframe(this.data);
+        assertEquals(-1, (int) dframe.min("AgeNot"));
+    }
+
+    @Test
+    public void testMax(){
+        Dframe dframe = new Dframe(this.data);
+        assertEquals(24, (int) dframe.max("Age"));
+    }
+
+    @Test
+    public void testMax2(){
+        Dframe dframe = new Dframe(this.data);
+        assertEquals(-1, (int) dframe.max("AgeNot"));
+    }
+
+    @Test
+    public void testMean(){
+        Dframe dframe = new Dframe(this.data);
+        assertEquals(-1, (int) dframe.mean("AgeNot"));
+    }
+
+    @Test
+    public void testMean2(){
+        Dframe dframe = new Dframe(this.data);
+        assertEquals(23, (int) dframe.mean("Age"));
+    }
 }

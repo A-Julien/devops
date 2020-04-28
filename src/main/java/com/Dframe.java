@@ -271,7 +271,7 @@ public class Dframe {
      * @param label
      * @return max of values, -1 if label not found
      */
-    public float max(String label){
+    public float min(String label){
         int k = find(label);
         if(k == -1)
             return -1;
@@ -288,7 +288,7 @@ public class Dframe {
      * @param label
      * @return min of values, -1 if label not found
      */
-    public float min(String label){
+    public float max(String label){
         int k = find(label);
         if(k == -1)
             return -1;
