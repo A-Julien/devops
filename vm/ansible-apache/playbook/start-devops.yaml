@@ -4,6 +4,6 @@
   tasks:
     - docker_container:
           name: devops
-          image: jalaimo/travis-ci-build-devops
+          image: jalaimo/travis-ci-build-devops:1.0-SNAPSHOT
           state: present
           recreate: no
