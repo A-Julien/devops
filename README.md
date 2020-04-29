@@ -1,13 +1,10 @@
-# DevOps 
+#  DevOps
+
 
 [![Build Status](https://travis-ci.com/A-Julien/devops.svg?branch=master)](https://travis-ci.com/A-Julien/tacOS) 
-
 [![codecov](https://codecov.io/gh/A-Julien/devops/branch/master/graph/badge.svg)](https://codecov.io/gh/A-Julien/devops)
-
 [![codeinsp](https://www.code-inspector.com/project/5990/score/svg)](https://frontend.code-inspector.com/public/project/5990/devops/dashboard)
-
 [![CodeFactor](https://www.codefactor.io/repository/github/a-julien/devops/badge)](https://www.codefactor.io/repository/github/a-julien/devops)
-
 
 ## Project architecture:
 
@@ -46,4 +43,3 @@ La documentation des fonctions est disponnible dans la [javadoc](https://a-julie
 * CodeCov pour la couverture des test (avec jacoco)
 * CodeInspector pour la qualité du code
 * Terraform & Ansible pour déployer l'application sur VM
-
