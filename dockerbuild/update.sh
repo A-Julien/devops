@@ -39,9 +39,8 @@ print_basepackages() {
 	LABEL org.label-schema.build-date=$BUILD_DATE \
     	org.label-schema.docker.dockerfile="/Dockerfile" \
     	org.label-schema.name="devOps"
-	#--------------Install basepackages--------------#
-
-
+    	
+	#--------------Install mvn basepackages--------------#
 
 	RUN apk add --update ca-certificates && \
         find /usr/share/ca-certificates/mozilla/ -name "*.crt" -exec keytool -import -trustcacerts \
