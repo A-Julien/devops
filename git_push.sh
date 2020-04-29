@@ -9,7 +9,7 @@ merge_branch() {
     git fetch --all || exit
     git stash || exit
     git checkout production || exit
-    git merge --no-ff "$TRAVIS_COMMIT" || exit
+    git merge --no-ff -s "$TRAVIS_COMMIT" || exit
     git push https://${GH_TOKEN}@github.com/A-Julien/devops.git
 }
 
