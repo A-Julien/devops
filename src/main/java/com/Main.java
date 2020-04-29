@@ -4,6 +4,7 @@ package com;
 import java.io.IOException;
 import Exception.*;
 
+@Generated
 public class Main {
     public static void main(String[] args) throws IOException, CsvException, FrameOutOfBound, IndexException {
         Object[][] data = { {"Julien", "Hugo", "Laura"},
