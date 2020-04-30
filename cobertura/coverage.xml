@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.8343558282208589" branch-rate="0.9722222222222222" lines-covered="136" lines-valid="163" branches-covered="70" branches-valid="72" complexity="3.25" version="2.1.1" timestamp="1588259193853">
+<coverage line-rate="0.8343558282208589" branch-rate="0.9722222222222222" lines-covered="136" lines-valid="163" branches-covered="70" branches-valid="72" complexity="3.25" version="2.1.1" timestamp="1588259918607">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/A-Julien/devops/target/generated-sources/annotations</source>
@@ -131,24 +131,24 @@
 								<line number="33" hits="13" branch="false"/>
 								<line number="34" hits="13" branch="false"/>
 								<line number="35" hits="13" branch="false"/>
-								<line number="37" hits="52" branch="true" condition-coverage="100% (2/2)">
+								<line number="37" hits="51" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
 								<line number="38" hits="39" branch="false"/>
-								<line number="41" hits="52" branch="true" condition-coverage="100% (2/2)">
+								<line number="41" hits="51" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="42" hits="39" branch="false"/>
-								<line number="45" hits="52" branch="true" condition-coverage="100% (2/2)">
+								<line number="42" hits="37" branch="false"/>
+								<line number="45" hits="51" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="46" hits="156" branch="true" condition-coverage="100% (2/2)">
+								<line number="46" hits="152" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
@@ -413,24 +413,24 @@
 						<line number="33" hits="13" branch="false"/>
 						<line number="34" hits="13" branch="false"/>
 						<line number="35" hits="13" branch="false"/>
-						<line number="37" hits="52" branch="true" condition-coverage="100% (2/2)">
+						<line number="37" hits="51" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
 						<line number="38" hits="39" branch="false"/>
-						<line number="41" hits="52" branch="true" condition-coverage="100% (2/2)">
+						<line number="41" hits="51" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="42" hits="39" branch="false"/>
-						<line number="45" hits="52" branch="true" condition-coverage="100% (2/2)">
+						<line number="42" hits="37" branch="false"/>
+						<line number="45" hits="51" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="46" hits="156" branch="true" condition-coverage="100% (2/2)">
+						<line number="46" hits="152" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
