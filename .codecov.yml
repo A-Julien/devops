@@ -15,5 +15,5 @@ coverage:
         if_ci_failed: error
         informational: False
         only_pulls: false
-        ignore:
-          - "src/java/com/Main.*"
+ignore:
+  - "src/java/com/Main.*"
