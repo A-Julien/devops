@@ -16,4 +16,4 @@ coverage:
         informational: False
         only_pulls: false
         ignore:
-          - "**/*Main.*"
+          - "src/java/com/Main.*"
